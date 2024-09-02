@@ -11,7 +11,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.linguaguess.domain.Chapter
+import com.example.linguaguess.domain.model.Chapter
 import com.example.linguaguess.ui.composables.ChaptersCardBox
 import com.example.linguaguess.ui.composables.GoBackTopBar
 
@@ -19,7 +19,7 @@ import com.example.linguaguess.ui.composables.GoBackTopBar
 fun ChaptersDetailView(
     onNavigateBack: () -> Unit,
     onNavigateToBlocksDetail: (String) -> Unit,
-    collectionId: String,
+    collectionId: Long,
     chaptersState: ChaptersState,
 ) {
 

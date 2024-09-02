@@ -44,7 +44,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.linguaguess.R
-import com.example.linguaguess.domain.CollectionCard
+import com.example.linguaguess.domain.model.CollectionJ
 import com.example.linguaguess.ui.theme.BgColor
 import com.example.linguaguess.ui.theme.FederalBlue
 import com.example.linguaguess.ui.theme.TextColor
@@ -54,7 +54,7 @@ import com.example.linguaguess.ui.theme.TextColorLight
 fun CollectionCardBox(
     modifier: Modifier = Modifier,
     onNavigateToDetail: (String) -> Unit,
-    collectionCardGlobal: CollectionCard
+    collectionJGlobal: CollectionJ
 ) {
 
     Box(
@@ -69,7 +69,7 @@ fun CollectionCardBox(
                 )
             )
             .clickable(onClick = {
-                onNavigateToDetail(collectionCardGlobal.collectionId)
+                onNavigateToDetail(collectionJGlobal.collectionId.toString())
             })
     ) {
         Row(
@@ -109,7 +109,7 @@ fun CollectionCardBox(
                     Spacer(modifier = Modifier.weight(0.5f))
 
                     Text(
-                        text = collectionCardGlobal.collectionName,
+                        text = collectionJGlobal.collectionName,
                         modifier = Modifier
                             .fillMaxWidth()
                             .heightIn(),
@@ -151,7 +151,7 @@ fun CollectionCardBox(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = collectionCardGlobal.collectionDescription,
+                        text = collectionJGlobal.collectionDescription,
                         modifier = Modifier
                             .fillMaxWidth()
                             .heightIn(),
@@ -174,7 +174,7 @@ fun CollectionCardIsDownloaded(
     modifier: Modifier = Modifier,
     onNavigateToDetail: (String) -> Unit,
     onNavigateToChaptersDetail: (String) -> Unit,
-    collectionCardGlobal: CollectionCard
+    collectionJGlobal: CollectionJ
 ) {
     Column(
         modifier = modifier.fillMaxWidth()
@@ -194,7 +194,7 @@ fun CollectionCardIsDownloaded(
                 )
                 .clip(RoundedCornerShape(topStart = 16.dp, bottomStart = 16.dp))
                 .fillMaxWidth()
-                .clickable(onClick = { onNavigateToDetail(collectionCardGlobal.collectionId) })
+                .clickable(onClick = { onNavigateToDetail(collectionJGlobal.collectionId.toString()) })
             // Ensuring full width
         ) {
             Row(
@@ -239,7 +239,7 @@ fun CollectionCardIsDownloaded(
                         Spacer(modifier = Modifier.weight(0.5f))
 
                         Text(
-                            text = collectionCardGlobal.collectionName,
+                            text = collectionJGlobal.collectionName,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .heightIn(),
@@ -288,7 +288,7 @@ fun CollectionCardIsDownloaded(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = collectionCardGlobal.collectionDescription,
+                            text = collectionJGlobal.collectionDescription,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .heightIn(),
@@ -336,7 +336,7 @@ fun CollectionCardIsDownloaded(
                 )
                 Spacer(modifier = Modifier.weight(0.9f))
                 IconButton(
-                    onClick = { onNavigateToDetail(collectionCardGlobal.collectionId) },
+                    onClick = { onNavigateToDetail(collectionJGlobal.collectionId.toString()) },
                     modifier = Modifier.size(40.dp)
                 ) {
                     Icon(
@@ -350,7 +350,7 @@ fun CollectionCardIsDownloaded(
 
 
                 IconButton(
-                    onClick = { onNavigateToChaptersDetail(collectionCardGlobal.collectionId) },
+                    onClick = { onNavigateToChaptersDetail(collectionJGlobal.collectionId.toString()) },
                     modifier = Modifier.size(40.dp)
                 ) {
                     Icon(

@@ -131,12 +131,12 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
         composable(route = NavigationRoutes.Authenticated.BottomBar.Settings.route) {
         }
 
-        //Collection CollectionDetail
+        //CollectionJ CollectionDetail
         composable(
             route = NavigationRoutes.Authenticated.CollectionDetail.route,
             arguments = listOf(
                 navArgument(ARG_ID) {
-                    type = NavType.StringType
+                    type = NavType.LongType
                 }
             ),
             enterTransition = { enterTransition() },
@@ -144,7 +144,7 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
             popEnterTransition = { popEnterTransition() },
             popExitTransition = { popExitTransition() },
         ) { from ->
-            val collectionId = from.arguments?.getString(ARG_ID) ?: ""
+            val collectionId = from.arguments?.getLong(ARG_ID) ?: -1 //TODO handle better solution
 
             CollectionDetailScreen(
                 onNavigateBack = {
@@ -164,8 +164,15 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
         }
 
         //Chapters CollectionDetail
-        composable(route = NavigationRoutes.Authenticated.ChaptersDetail.route) { from ->
-            val collectionId = from.arguments?.getString(ARG_ID) ?: ""
+        composable(
+            route = NavigationRoutes.Authenticated.ChaptersDetail.route,
+            arguments = listOf(
+                navArgument(ARG_ID) {
+                    type = NavType.LongType
+                }
+            ),
+        ) { from ->
+            val collectionId = from.arguments?.getLong(ARG_ID) ?: -1 //TODO handle better solution
 
             ChaptersDetailScreen(
                 onNavigateBack = {
@@ -179,13 +186,20 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
                         )
                     )
                 },
-                collectionId = collectionId
+                chapterId = collectionId
             )
         }
 
         //Blocks Detail
-        composable(route = NavigationRoutes.Authenticated.BlocksDetail.route) { from ->
-            val chapterId = from.arguments?.getString(ARG_ID) ?: ""
+        composable(
+            route = NavigationRoutes.Authenticated.BlocksDetail.route,
+            arguments = listOf(
+                navArgument(ARG_ID) {
+                    type = NavType.LongType
+                }
+            ),
+        ) { from ->
+            val chapterId = from.arguments?.getLong(ARG_ID) ?: -1
 
             BlocksDetailScreen(
                 onNavigateBack = {

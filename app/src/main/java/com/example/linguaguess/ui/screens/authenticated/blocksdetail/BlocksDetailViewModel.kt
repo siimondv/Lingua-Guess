@@ -2,7 +2,7 @@ package com.example.linguaguess.ui.screens.authenticated.blocksdetail
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
-import com.example.linguaguess.domain.Block
+import com.example.linguaguess.domain.model.Block
 import com.example.linguaguess.ui.common.ErrorState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

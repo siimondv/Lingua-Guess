@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 
 //rename to StoreScreen
 @Composable
@@ -13,12 +14,11 @@ fun DownloadScreen(
 ) {
 
     val downloadViewModel: DownloadViewModel = hiltViewModel()
-    val uiState by downloadViewModel.uiState.collectAsState()
 
     DownloadView(
         onNavigateToCollectionDetail = onNavigateToCollectionDetail,
         onNavigateToChaptersDetail = onNavigateToChaptersDetail,
-        downloadState = uiState,
+        collectionJs = downloadViewModel.collectionPager.collectAsLazyPagingItems()
     )
 
 

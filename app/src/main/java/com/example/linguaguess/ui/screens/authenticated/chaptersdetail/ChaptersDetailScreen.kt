@@ -9,7 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun ChaptersDetailScreen(
     onNavigateBack: () -> Unit,
     onNavigateToBlocksDetail: (String) -> Unit,
-    collectionId: String,
+    chapterId: Long,
 ) {
 
     val chaptersDetailViewModel: ChaptersDetailViewModel = hiltViewModel()
@@ -18,7 +18,7 @@ fun ChaptersDetailScreen(
     ChaptersDetailView(
         onNavigateBack = onNavigateBack,
         onNavigateToBlocksDetail = onNavigateToBlocksDetail,
-        collectionId = collectionId,
+        collectionId = chapterId,
         chaptersState = uiState,
     )
 

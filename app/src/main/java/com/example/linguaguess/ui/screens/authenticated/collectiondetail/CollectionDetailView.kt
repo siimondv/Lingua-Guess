@@ -32,7 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.linguaguess.R
-import com.example.linguaguess.domain.DifficultyLevel
+import com.example.linguaguess.domain.model.DifficultyLevel
 import com.example.linguaguess.ui.composables.ComponentDetailBox
 import com.example.linguaguess.ui.composables.GoBackTopBar
 import com.example.linguaguess.ui.composables.buttons.NormalButton
@@ -41,9 +41,9 @@ import com.example.linguaguess.ui.composables.buttons.NormalButton
 fun CollectionDetailView(
     onNavigateBack: () -> Unit,
     onNavigateToChaptersDetail: (String) -> Unit,
-    collectionId: String,
+    collectionId: Long,
     collectionDetailState: CollectionDetailState,
-    getCollection: (String) -> Unit,
+    getCollection: (Long) -> Unit,
 
     ) {
 
@@ -77,20 +77,20 @@ fun DetailContent(
         )
     ) {
         ComponentDetailBox(
-            collectionName = collectionDetailState.collectionCard.collectionName,
+            collectionName = collectionDetailState.collectionJ.collectionName,
         )
         InfoRow(
-            totalChapters = collectionDetailState.collectionCard.totalChapters,
-            totalWords = collectionDetailState.collectionCard.totalWords,
-            difficultyLevel = collectionDetailState.collectionCard.difficultyLevel,
+            totalChapters = collectionDetailState.collectionJ.totalChapters,
+            totalWords = collectionDetailState.collectionJ.totalWords,
+            difficultyLevel = collectionDetailState.collectionJ.difficultyLevel,
         )
 
-        if (collectionDetailState.collectionCard.isDownloaded) {
+        if (collectionDetailState.collectionJ.isDownloaded) {
             NormalButton(text = stringResource(R.string.download), onClick = { })
         } else {
             NormalButton(
                 text = stringResource(R.string.start_learning),
-                onClick = { onNavigateToChaptersDetail(collectionDetailState.collectionCard.collectionId) }
+                onClick = { onNavigateToChaptersDetail(collectionDetailState.collectionJ.collectionId.toString()) }
             )
         }
 
@@ -105,7 +105,7 @@ fun DetailContent(
         )
         Text(
 
-            text = collectionDetailState.collectionCard.collectionDescription,
+            text = collectionDetailState.collectionJ.collectionDescription,
             modifier = Modifier.padding(14.dp),
             fontWeight = FontWeight.Medium,
             color = MaterialTheme.colorScheme.onBackground,

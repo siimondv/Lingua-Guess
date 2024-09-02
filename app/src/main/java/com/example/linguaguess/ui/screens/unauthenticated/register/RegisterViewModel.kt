@@ -1,9 +1,8 @@
 package com.example.linguaguess.ui.screens.unauthenticated.register
 
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
-import com.example.linguaguess.domain.User
+import com.example.linguaguess.domain.model.User
 import com.example.linguaguess.ui.common.ErrorState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

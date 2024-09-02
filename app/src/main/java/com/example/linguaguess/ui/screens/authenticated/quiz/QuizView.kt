@@ -133,7 +133,7 @@ fun QuizContent(
             Spacer(modifier = Modifier.weight(.5f))
 
             if (quizState.isCheckAnswerEnabled) {
-                AnswerBox(text = quizState.currentWord.translatedWord)
+                AnswerBox(text = quizState.currentWord.originalWord)
             }
 
             Spacer(modifier = Modifier.weight(1f))

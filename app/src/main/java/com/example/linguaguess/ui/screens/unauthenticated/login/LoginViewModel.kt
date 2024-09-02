@@ -2,7 +2,7 @@ package com.example.linguaguess.ui.screens.unauthenticated.login
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
-import com.example.linguaguess.domain.User
+import com.example.linguaguess.domain.model.User
 import com.example.linguaguess.ui.common.ErrorState
 
 import dagger.hilt.android.lifecycle.HiltViewModel

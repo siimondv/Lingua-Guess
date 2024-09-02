@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
-import com.example.linguaguess.domain.JapaneseWord
+import com.example.linguaguess.domain.model.JapaneseWord
 import com.example.linguaguess.ui.common.ErrorState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,266 +22,266 @@ class QuizViewModel @Inject constructor(
 
     private val words = listOf(
         JapaneseWord(
-            translatedWord = "thank you for the meal (before eating)",
+            originalWord = "thank you for the meal (before eating)",
             hiraganaKatakana = "いただきます",
-            kanji = "頂きます",
+            kanjiWord = "頂きます",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "thank you for the meal (after eating)",
+            originalWord = "thank you for the meal (after eating)",
             hiraganaKatakana = "ごちそうさまでした",
-            kanji = "御馳走様でした",
+            kanjiWord = "御馳走様でした",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "I am going and coming back",
+            originalWord = "I am going and coming back",
             hiraganaKatakana = "いってきます",
-            kanji = "行って来ます",
+            kanjiWord = "行って来ます",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "please go and come back",
+            originalWord = "please go and come back",
             hiraganaKatakana = "いってらっしゃい",
-            kanji = "行ってらっしゃい",
+            kanjiWord = "行ってらっしゃい",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "I am home",
+            originalWord = "I am home",
             hiraganaKatakana = "ただいま",
-            kanji = "只今",
+            kanjiWord = "只今",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "welcome home",
+            originalWord = "welcome home",
             hiraganaKatakana = "おかえり",
-            kanji = "お帰り",
+            kanjiWord = "お帰り",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "how do you do?",
+            originalWord = "how do you do?",
             hiraganaKatakana = "はじめまして",
-            kanji = "始めまして",
+            kanjiWord = "始めまして",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "nice to meet you",
+            originalWord = "nice to meet you",
             hiraganaKatakana = "よろしくおねがいします",
-            kanji = "宜しくお願いします",
+            kanjiWord = "宜しくお願いします",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "good morning",
+            originalWord = "good morning",
             hiraganaKatakana = "おはよう",
-            kanji = "お早う",
+            kanjiWord = "お早う",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "good morning (polite)",
+            originalWord = "good morning (polite)",
             hiraganaKatakana = "おはようございます",
-            kanji = "お早うございます",
+            kanjiWord = "お早うございます",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "good afternoon",
+            originalWord = "good afternoon",
             hiraganaKatakana = "こんにちは",
-            kanji = "今日は",
+            kanjiWord = "今日は",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "good evening",
+            originalWord = "good evening",
             hiraganaKatakana = "こんばんは",
-            kanji = "今晩は",
+            kanjiWord = "今晩は",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "good night",
+            originalWord = "good night",
             hiraganaKatakana = "おやすみなさい",
-            kanji = "お休みなさい",
+            kanjiWord = "お休みなさい",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "goodbye",
+            originalWord = "goodbye",
             hiraganaKatakana = "さようなら",
-            kanji = "左様なら",
+            kanjiWord = "左様なら",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "thank you",
+            originalWord = "thank you",
             hiraganaKatakana = "ありがとう",
-            kanji = "有難う",
+            kanjiWord = "有難う",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "excuse me",
+            originalWord = "excuse me",
             hiraganaKatakana = "すみません",
-            kanji = "済みません",
+            kanjiWord = "済みません",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "No",
+            originalWord = "No",
             hiraganaKatakana = "いいえ",
-            kanji = "いいえ",
+            kanjiWord = "いいえ",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "0",
+            originalWord = "0",
             hiraganaKatakana = "ゼロ",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "1",
+            originalWord = "1",
             hiraganaKatakana = "いち",
-            kanji = "一",
+            kanjiWord = "一",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "2",
+            originalWord = "2",
             hiraganaKatakana = "に",
-            kanji = "二",
+            kanjiWord = "二",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "3",
+            originalWord = "3",
             hiraganaKatakana = "さん",
-            kanji = "三",
+            kanjiWord = "三",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "4",
+            originalWord = "4",
             hiraganaKatakana = "よん",
-            kanji = "四",
+            kanjiWord = "四",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "5",
+            originalWord = "5",
             hiraganaKatakana = "ご",
-            kanji = "五",
+            kanjiWord = "五",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "6",
+            originalWord = "6",
             hiraganaKatakana = "ろく",
-            kanji = "六",
+            kanjiWord = "六",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "7",
+            originalWord = "7",
             hiraganaKatakana = "なな",
-            kanji = "七",
+            kanjiWord = "七",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "8",
+            originalWord = "8",
             hiraganaKatakana = "はち",
-            kanji = "八",
+            kanjiWord = "八",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "9",
+            originalWord = "9",
             hiraganaKatakana = "きゅう",
-            kanji = "九",
+            kanjiWord = "九",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "10",
+            originalWord = "10",
             hiraganaKatakana = "じゅう",
-            kanji = "十",
+            kanjiWord = "十",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "11",
+            originalWord = "11",
             hiraganaKatakana = "じゅういち",
-            kanji = "十一",
+            kanjiWord = "十一",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "12",
+            originalWord = "12",
             hiraganaKatakana = "じゅうに",
-            kanji = "十二",
+            kanjiWord = "十二",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "13",
+            originalWord = "13",
             hiraganaKatakana = "じゅうさん",
-            kanji = "十三",
+            kanjiWord = "十三",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "14",
+            originalWord = "14",
             hiraganaKatakana = "じゅうよん",
-            kanji = "十四",
+            kanjiWord = "十四",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "15",
+            originalWord = "15",
             hiraganaKatakana = "じゅうご",
-            kanji = "十五",
+            kanjiWord = "十五",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "16",
+            originalWord = "16",
             hiraganaKatakana = "じゅうろく",
-            kanji = "十六",
+            kanjiWord = "十六",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "17",
+            originalWord = "17",
             hiraganaKatakana = "じゅうなな",
-            kanji = "十七",
+            kanjiWord = "十七",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "18",
+            originalWord = "18",
             hiraganaKatakana = "じゅうはち",
-            kanji = "十八",
+            kanjiWord = "十八",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "19",
+            originalWord = "19",
             hiraganaKatakana = "じゅうきゅう",
-            kanji = "十九",
+            kanjiWord = "十九",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "20",
+            originalWord = "20",
             hiraganaKatakana = "にじゅう",
-            kanji = "二十",
+            kanjiWord = "二十",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "30",
+            originalWord = "30",
             hiraganaKatakana = "さんじゅう",
-            kanji = "三十",
+            kanjiWord = "三十",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "40",
+            originalWord = "40",
             hiraganaKatakana = "よんじゅう",
-            kanji = "四十",
+            kanjiWord = "四十",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "50",
+            originalWord = "50",
             hiraganaKatakana = "ごじゅう",
-            kanji = "五十",
+            kanjiWord = "五十",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "60",
+            originalWord = "60",
             hiraganaKatakana = "ろくじゅう",
-            kanji = "六十",
+            kanjiWord = "六十",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "70",
+            originalWord = "70",
             hiraganaKatakana = "ななじゅう",
-            kanji = "七十",
+            kanjiWord = "七十",
             chapter = 0
         ),
         JapaneseWord(
-            translatedWord = "80",
+            originalWord = "80",
             hiraganaKatakana = "はちじゅう",
-            kanji = "八十",
+            kanjiWord = "八十",
             chapter = 0
         )
 

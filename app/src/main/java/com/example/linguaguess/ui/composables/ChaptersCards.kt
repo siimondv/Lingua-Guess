@@ -28,11 +28,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.linguaguess.R
-import com.example.linguaguess.domain.Chapter
+import com.example.linguaguess.domain.model.Chapter
 import com.example.linguaguess.ui.theme.BgColor
-import com.example.linguaguess.ui.theme.BgGreen
-import com.example.linguaguess.ui.theme.BorderGreen
-import com.example.linguaguess.ui.theme.RgDarkGreen
 
 
 @Composable

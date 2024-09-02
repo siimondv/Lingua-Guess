@@ -10,7 +10,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.linguaguess.domain.CollectionCard
+import com.example.linguaguess.domain.model.CollectionJ
 import com.example.linguaguess.ui.composables.CollectionCardIsDownloaded
 
 
@@ -27,14 +27,14 @@ fun LibraryView(
             .padding(16.dp)
     ) {
 
-        items(libraryState.collectionCards) { item ->
+        items(libraryState.collectionJS) { item ->
             CollectionCardItem(
                 modifier = Modifier
                     .padding(12.dp)
                     .fillMaxWidth(),
                 onNavigateToDetail = onNavigateToCollectionDetail,
                 onNavigateToQuiz = onNavigateToChaptersDetail,
-                collectionCardGlobal = item,
+                collectionJGlobal = item,
             )
         }
         //This is so the last item is not covered by the bottom bar
@@ -51,12 +51,12 @@ private fun CollectionCardItem(
     modifier: Modifier = Modifier,
     onNavigateToDetail: (String) -> Unit,
     onNavigateToQuiz: (String) -> Unit,
-    collectionCardGlobal: CollectionCard,
+    collectionJGlobal: CollectionJ,
 ) {
     CollectionCardIsDownloaded(
         modifier = modifier,
         onNavigateToDetail = onNavigateToDetail,
-        collectionCardGlobal = collectionCardGlobal,
+        collectionJGlobal = collectionJGlobal,
         onNavigateToChaptersDetail = onNavigateToQuiz
     )
 }

@@ -2,7 +2,7 @@ package com.example.linguaguess.ui.screens.authenticated.chaptersdetail
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
-import com.example.linguaguess.domain.Chapter
+import com.example.linguaguess.domain.model.Chapter
 import com.example.linguaguess.ui.common.ErrorState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

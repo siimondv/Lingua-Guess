@@ -1,4 +1,4 @@
-package com.example.linguaguess.domain
+package com.example.linguaguess.domain.model
 
 data class User(
     val name: String = "",

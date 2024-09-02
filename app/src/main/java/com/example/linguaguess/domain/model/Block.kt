@@ -1,4 +1,4 @@
-package com.example.linguaguess.domain
+package com.example.linguaguess.domain.model
 
 data class Block(
     val blockNumber: Int = 0,

@@ -67,7 +67,7 @@
     <string name="library">Library</string>
     <string name="settings">Settings</string>
 
-    <!-- Collection Card Icons -->
+    <!-- CollectionJ Card Icons -->
     <string name="download_icon">Download Icon</string>
     <string name="info_icon">Info Icon</string>
     <string name="play_icon">Play Icon</string>
@@ -81,6 +81,9 @@
     <string name="not_started">NOT STARTED</string>
     <string name="play">PLAY !</string>
     <string name="best_score">BEST SCORE:</string>
+
+    <!-- Collection Detail Error Messages -->
+    <string name="collectiondetail_error_msg_common">There has been an error retrieving the collection. Please try again later.</string>
 
 
 </resources>

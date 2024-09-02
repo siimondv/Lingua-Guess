@@ -12,7 +12,7 @@ import com.example.linguaguess.ui.screens.authenticated.chaptersdetail.ChaptersD
 fun BlocksDetailScreen(
     onNavigateBack: () -> Unit,
     onNavigateToQuiz: (String) -> Unit,
-    chapterId: String,
+    chapterId: Long,
 ) {
 
     val blocksDetailViewModel = hiltViewModel<BlocksDetailViewModel>()

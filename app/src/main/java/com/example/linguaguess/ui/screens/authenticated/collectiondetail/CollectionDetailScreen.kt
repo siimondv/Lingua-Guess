@@ -7,10 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun CollectionDetailScreen(
-
-    onNavigateBack: () -> Unit,
-    onNavigateToChaptersDetail: (String) -> Unit,
-    collectionId: String
+    onNavigateBack: () -> Unit, onNavigateToChaptersDetail: (String) -> Unit, collectionId: Long
 ) {
 
     val collectionDetailViewModel = hiltViewModel<CollectionDetailViewModel>()
@@ -21,9 +18,10 @@ fun CollectionDetailScreen(
         onNavigateToChaptersDetail = onNavigateToChaptersDetail,
         collectionId = collectionId,
         collectionDetailState = uiState,
-        getCollection = {},
-
-        )
+        getCollection = {
+            collectionDetailViewModel.getCollectionById(id = collectionId.toLong())
+        },
+    )
 
 
 }

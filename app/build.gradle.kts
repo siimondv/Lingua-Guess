@@ -80,6 +80,17 @@ dependencies {
     //material
     implementation ("androidx.compose.material:material:1.6.8")
 
+    // Paging
+    implementation ("androidx.paging:paging-runtime-ktx:3.3.0")
+    implementation ("androidx.paging:paging-compose:3.3.0")
+
+    val retrofitVersion = "2.9.0"
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation("com.squareup.retrofit2:converter-scalars:$retrofitVersion")
 
     //cuidado aqui
     implementation ("androidx.compose.material:material-icons-extended:1.6.8")
@@ -93,6 +104,11 @@ dependencies {
     kapt ("androidx.hilt:hilt-compiler:1.1.0")
     implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
 
+
+    // Room
+    implementation ("androidx.room:room-ktx:2.6.1")
+    kapt ("androidx.room:room-compiler:2.6.1")
+    implementation ("androidx.room:room-paging:2.6.1")
     
 
 }

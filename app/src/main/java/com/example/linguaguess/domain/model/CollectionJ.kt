@@ -1,7 +1,7 @@
-package com.example.linguaguess.domain
+package com.example.linguaguess.domain.model
 
-data class CollectionCard(
-    val collectionId: String = "",
+data class CollectionJ(
+    val collectionId: Long = 0,
     val collectionName: String = "",
     val collectionDescription: String = "",
     val countryCode: String = "",
