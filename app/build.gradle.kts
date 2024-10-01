@@ -9,6 +9,7 @@ android {
     namespace = "com.example.linguaguess"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.example.linguaguess"
         minSdk = 33
@@ -109,6 +110,9 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.6.1")
     kapt ("androidx.room:room-compiler:2.6.1")
     implementation ("androidx.room:room-paging:2.6.1")
+
+    // Lottie animations.
+    implementation ("com.airbnb.android:lottie-compose:6.4.0")
     
 
 }

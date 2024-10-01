@@ -18,7 +18,9 @@ fun DownloadScreen(
     DownloadView(
         onNavigateToCollectionDetail = onNavigateToCollectionDetail,
         onNavigateToChaptersDetail = onNavigateToChaptersDetail,
-        collectionJs = downloadViewModel.collectionPager.collectAsLazyPagingItems()
+        startPaging = { downloadViewModel.startPaging() },
+        refreshPaging = { downloadViewModel.refreshPaging() },
+        collectionJs = downloadViewModel.collectionsFlow.collectAsLazyPagingItems()
     )
 
 

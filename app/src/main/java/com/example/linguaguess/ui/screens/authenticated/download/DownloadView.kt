@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,28 +26,43 @@ import com.example.linguaguess.R
 import com.example.linguaguess.domain.model.CollectionJ
 import com.example.linguaguess.ui.composables.CollectionCardBox
 import com.example.linguaguess.ui.composables.CollectionCardIsDownloaded
+import com.example.linguaguess.ui.composables.NetworkError
 
+//TODO Revisar si esta es la mejor manera de organizar la ui
 @Composable
 fun DownloadView(
     onNavigateToCollectionDetail: (String) -> Unit,
     onNavigateToChaptersDetail: (String) -> Unit,
+    startPaging: () -> Unit,
+    refreshPaging: () -> Unit,
     collectionJs: LazyPagingItems<CollectionJ>
-
 ) {
-    val context = LocalContext.current
-    LaunchedEffect(key1 = collectionJs.loadState) {
-        if (collectionJs.loadState.refresh is LoadState.Error) {
-            Toast.makeText(
-                context,
-                "Error: " + (collectionJs.loadState.refresh as LoadState.Error).error.message,
-                Toast.LENGTH_LONG
-            ).show()
-        }
+    // Trigger paging when the Composable is first composed
+    LaunchedEffect(Unit) {
+        startPaging()
     }
-    Box(modifier = Modifier.fillMaxSize()) {
-        if (collectionJs.loadState.refresh is LoadState.Loading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-        } else {
+
+    // Render UI based on paging states
+    when {
+        // Show the error state UI if there is an error during refresh
+        collectionJs.loadState.refresh is LoadState.Error -> {
+            NetworkError(onRetryClicked = {
+                refreshPaging() // Retry the paging when Retry is clicked
+            })
+        }
+
+        // Show the loading state if the content is still loading
+        collectionJs.loadState.refresh is LoadState.Loading -> {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center // Centers the loader on the screen
+            ) {
+                CircularProgressIndicator()
+            }
+        }
+
+        // Otherwise, show the actual content
+        else -> {
             DownloadContent(
                 collectionJs = collectionJs,
                 onNavigateToCollectionDetail = onNavigateToCollectionDetail,
@@ -54,9 +70,8 @@ fun DownloadView(
             )
         }
     }
-
-
 }
+
 
 @Composable
 fun DownloadContent(
@@ -123,24 +138,8 @@ private fun CollectionCardItem(
             onNavigateToChaptersDetail = onNavigateToChaptersDetail,
             collectionJGlobal = collectionJGlobal
         )
-
-
     }
 
 }
 
-
-@SuppressLint("DiscouragedApi")
-fun getResourceIdForImage(context: Context, imageName: String): Int {
-    // Resolve the resource ID dynamically using context.resources.getIdentifier
-    val packageName = context.packageName
-    val resId = try {
-        context.resources.getIdentifier(imageName, "drawable", packageName)
-    } catch (e: Exception) {
-        e.printStackTrace()
-        0 // Return 0 or a default resource ID if not found
-    }
-
-    return if (resId != 0) resId else R.drawable.jp // Default image if not found
-}
 

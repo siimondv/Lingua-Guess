@@ -45,10 +45,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.linguaguess.R
 import com.example.linguaguess.domain.model.CollectionJ
+import com.example.linguaguess.domain.model.DifficultyLevel
+import com.example.linguaguess.ui.composables.textcompoosables.TextWithRoundedBorder
 import com.example.linguaguess.ui.theme.BgColor
+import com.example.linguaguess.ui.theme.EasyBackgroundGreen
+import com.example.linguaguess.ui.theme.EasyGreen
 import com.example.linguaguess.ui.theme.FederalBlue
+import com.example.linguaguess.ui.theme.HardBackgroundRed
+import com.example.linguaguess.ui.theme.HardRed
+import com.example.linguaguess.ui.theme.IncorrectRed
+import com.example.linguaguess.ui.theme.MedBackgroundYellow
+import com.example.linguaguess.ui.theme.MedYellow
+import com.example.linguaguess.ui.theme.RgDarkGreen
 import com.example.linguaguess.ui.theme.TextColor
-import com.example.linguaguess.ui.theme.TextColorLight
 
 @Composable
 fun CollectionCardBox(
@@ -150,18 +159,38 @@ fun CollectionCardBox(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = collectionJGlobal.collectionDescription,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .heightIn(),
-                        style = TextStyle(
-                            fontSize = 15.sp,
-                            fontWeight = FontWeight.Bold,
-                            fontStyle = FontStyle.Normal
-                        ),
-                        color = TextColorLight,
-                        textAlign = TextAlign.Center
+                    val textColor = when (collectionJGlobal.difficultyLevel) {
+                        DifficultyLevel.EASY -> EasyGreen
+                        DifficultyLevel.MEDIUM -> MedYellow
+                        DifficultyLevel.HARD -> HardRed
+                    }
+
+                    val backgroundColor = when (collectionJGlobal.difficultyLevel) {
+                        DifficultyLevel.EASY -> EasyBackgroundGreen
+                        DifficultyLevel.MEDIUM -> MedBackgroundYellow
+                        DifficultyLevel.HARD -> HardBackgroundRed
+                    }
+
+                    TextWithRoundedBorder(
+                        text = collectionJGlobal.difficultyLevel.name,
+                        textColor = textColor,
+                        backgroundColor = backgroundColor,
+                        borderColor = textColor,
+                        modifier = Modifier.padding(horizontal = 10.dp)
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    TextWithRoundedBorder(
+                        text = collectionJGlobal.totalWords.toString() + stringResource(R.string.words_CollectionCardBox),
+                        modifier = Modifier.padding(horizontal = 10.dp)
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    TextWithRoundedBorder(
+                        text = collectionJGlobal.totalChapters.toString() + stringResource(R.string.chapters_CollectionCardBox),
+                        modifier = Modifier.padding(horizontal = 10.dp)
                     )
                 }
             }
@@ -287,18 +316,38 @@ fun CollectionCardIsDownloaded(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(
-                            text = collectionJGlobal.collectionDescription,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .heightIn(),
-                            style = TextStyle(
-                                fontSize = 15.sp,
-                                fontWeight = FontWeight.Bold,
-                                fontStyle = FontStyle.Normal
-                            ),
-                            color = TextColorLight,
-                            textAlign = TextAlign.Center
+                        val textColor = when (collectionJGlobal.difficultyLevel) {
+                            DifficultyLevel.EASY -> EasyGreen
+                            DifficultyLevel.MEDIUM -> MedYellow
+                            DifficultyLevel.HARD -> HardRed
+                        }
+
+                        val backgroundColor = when (collectionJGlobal.difficultyLevel) {
+                            DifficultyLevel.EASY -> EasyBackgroundGreen
+                            DifficultyLevel.MEDIUM -> MedBackgroundYellow
+                            DifficultyLevel.HARD -> HardBackgroundRed
+                        }
+
+                        TextWithRoundedBorder(
+                            text = collectionJGlobal.difficultyLevel.name,
+                            textColor = textColor,
+                            backgroundColor = backgroundColor,
+                            borderColor = textColor,
+                            modifier = Modifier.padding(horizontal = 10.dp)
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        TextWithRoundedBorder(
+                            text = collectionJGlobal.totalWords.toString() + stringResource(R.string.words_CollectionCardIsDownloadedBox),
+                            modifier = Modifier.padding(horizontal = 10.dp)
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        TextWithRoundedBorder(
+                            text = collectionJGlobal.totalChapters.toString() + stringResource(R.string.chapters_CollectionCardIsDownloadedBox),
+                            modifier = Modifier.padding(horizontal = 10.dp)
                         )
                     }
                 }
@@ -325,7 +374,7 @@ fun CollectionCardIsDownloaded(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = "Downloaded", color = TextColor, fontSize = 16.sp
+                    text = stringResource(R.string.downloaded_CollectionCardIsDownloaded), color = TextColor, fontSize = 16.sp
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Icon(

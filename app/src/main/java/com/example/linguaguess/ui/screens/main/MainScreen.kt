@@ -104,7 +104,7 @@ private fun BottomBar(navController: NavHostController) {
                         screen = screen, isSelected = screen.route == currentDestination?.route
                     ) {
                         navController.navigate(screen.route) {
-                            popUpTo(navController.graph.findStartDestination().id)
+                            popUpTo(navController.graph.findStartDestination().id) { inclusive = true }
                             launchSingleTop = true
                         }
                     }

@@ -6,7 +6,7 @@ data class Page<T>(
     val first: Boolean,
     val last: Boolean,
     val size: Int,
-    val content: List<T>,
+    var content: List<T>,
     val number: Int,
     val numberOfElements: Int,
     val empty: Boolean

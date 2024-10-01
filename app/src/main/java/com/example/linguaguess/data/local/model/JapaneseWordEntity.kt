@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value = ["chapterId"])] // For faster lookups
+    indices = [Index(value = ["wordId"])] // For faster lookups
 )
 data class JapaneseWordEntity (
     @PrimaryKey

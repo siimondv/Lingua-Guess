@@ -1,6 +1,9 @@
 package com.example.linguaguess.ui.screens.authenticated.quiz
 
+import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,84 +11,157 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.Scaffold
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.SnackbarDuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.RestartAlt
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.paging.LoadState
 import com.example.linguaguess.R
 import com.example.linguaguess.ui.composables.ProgressBarRounded
 import com.example.linguaguess.ui.composables.AnswerBox
+import com.example.linguaguess.ui.composables.CommonError
 import com.example.linguaguess.ui.composables.GoBackTopBar
 import com.example.linguaguess.ui.composables.buttons.GoodBadButtons
 
 import com.example.linguaguess.ui.composables.buttons.RoundGradientButton
+import com.example.linguaguess.ui.composables.buttons.RoundGradientTextButton
 import com.example.linguaguess.ui.composables.buttons.RoundedButton
 import com.example.linguaguess.ui.composables.textcompoosables.RoundedFractionLabel
 import com.example.linguaguess.ui.composables.textcompoosables.WordText
+import com.example.linguaguess.ui.screens.authenticated.chaptersdetail.ChapterDetailContent
+import com.example.linguaguess.ui.screens.authenticated.download.collectionNotLoadedErrorState
 import com.example.linguaguess.ui.theme.RgDarkBlue
 import com.example.linguaguess.ui.theme.RgDarkGreen
+import com.example.linguaguess.ui.theme.RgDarkRed
 import com.example.linguaguess.ui.theme.RgDarkYellow
 import com.example.linguaguess.ui.theme.RgLightBlue
 import com.example.linguaguess.ui.theme.RgLightGreen
+import com.example.linguaguess.ui.theme.RgLightRed
 import com.example.linguaguess.ui.theme.RgLightYellow
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun QuizView(
     onNavigateBack: () -> Unit,
-    collectionId: String,
-    quizState: QuizState,
-    getWordList: (String) -> Unit,
+    collectionId: Long,
+    chapterId: Long,
+    blockPosition: Long,
+    getWordList: (Long, Long) -> Unit,
     onNextWord: () -> Unit,
     onReset: () -> Unit,
     onCheckAnswerChange: () -> Unit,
     onGoodAnswer: () -> Unit,
-    onBadAnswer: () -> Unit
+    onBadAnswer: () -> Unit,
+    onFinish: (Long, Long, Long) -> Unit,
+    quizState: QuizState,
 ) {
 
     LaunchedEffect(key1 = true, block = {
-        getWordList(collectionId)
+        getWordList(chapterId, blockPosition)
     })
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
+    val scaffoldState = rememberScaffoldState()
 
-    ) {
-        GoBackTopBar(
-            onClick = onNavigateBack,
-        )
-
-        QuizContent(
-            quizState = quizState,
-            onNextWord = onNextWord,
-            onReset = onReset,
-            onCheckAnswerChange = onCheckAnswerChange,
-            onGoodAnswer = onGoodAnswer,
-            onBadAnswer = onBadAnswer
-        )
+    val errorMessage = when {
+        quizState.errorState.finishErrorState.hasError -> quizState.errorState.finishErrorState.errorMessage
+        else -> null
     }
+
+    errorMessage?.let {
+        LaunchedEffect(it) {
+            scaffoldState.snackbarHostState.showSnackbar(
+                message = it,
+                duration = SnackbarDuration.Short
+            )
+        }
+    }
+
+    Scaffold(
+        scaffoldState = scaffoldState,
+        content = {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+
+            ) {
+                GoBackTopBar(
+                    onClick = onNavigateBack,
+                )
+
+                when {
+                    quizState.errorState.wordsErrorState.hasError -> {
+                        CommonError(onRetryClicked = {
+                            getWordList(chapterId, blockPosition)
+                        })
+                    }
+
+                    quizState.isLoading -> {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator()
+                        }
+                    }
+
+                    quizState.isFinished -> {
+                        onNavigateBack()
+                    }
+                    else -> {
+                        QuizContent(
+                            collectionId = collectionId,
+                            chapterId = chapterId,
+                            blockPosition = blockPosition,
+                            quizState = quizState,
+                            onNavigateBack = onNavigateBack,
+                            onNextWord = onNextWord,
+                            onReset = onReset,
+                            onCheckAnswerChange = onCheckAnswerChange,
+                            onGoodAnswer = onGoodAnswer,
+                            onBadAnswer = onBadAnswer,
+                            onFinish = onFinish
+                        )
+                    }
+                }
+
+            }
+        }
+    )
+
 }
 
 
 @Composable
 fun QuizContent(
+    collectionId: Long,
+    chapterId: Long,
+    blockPosition: Long,
     quizState: QuizState,
+    onNavigateBack: () -> Unit,
     onNextWord: () -> Unit,
     onReset: () -> Unit,
     onCheckAnswerChange: () -> Unit,
     onGoodAnswer: () -> Unit,
-    onBadAnswer: () -> Unit
+    onBadAnswer: () -> Unit,
+    onFinish: (Long, Long, Long) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -195,17 +271,20 @@ fun QuizContent(
                     color2 = RgDarkBlue
                 )
                 Spacer(Modifier.weight(.5f))
-                RoundGradientButton(
-                    onClick = {},
+                RoundGradientTextButton(
+                    onClick = {
+                        onFinish(collectionId, chapterId, blockPosition)
+                        onNavigateBack()
+                    },
                     enabled = true,
-                    imageVector = Icons.Filled.AutoAwesome,
-                    color1 = RgLightYellow,
-                    color2 = RgDarkYellow
+                    text = stringResource(R.string.finish),
+                    color1 = RgLightRed,
+                    color2 = RgDarkRed
                 )
                 Spacer(Modifier.weight(.5f))
                 RoundGradientButton(
                     onClick = onNextWord,
-                    enabled = true,
+                    enabled = !quizState.isLastWord,
                     imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                     color1 = RgLightGreen,
                     color2 = RgDarkGreen

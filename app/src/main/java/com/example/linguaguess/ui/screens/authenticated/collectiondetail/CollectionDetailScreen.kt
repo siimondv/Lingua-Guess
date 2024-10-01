@@ -19,8 +19,11 @@ fun CollectionDetailScreen(
         collectionId = collectionId,
         collectionDetailState = uiState,
         getCollection = {
-            collectionDetailViewModel.getCollectionById(id = collectionId.toLong())
+            collectionDetailViewModel.getCollectionById(id = collectionId)
         },
+        downloadPressed = {
+            collectionDetailViewModel.download()
+        }
     )
 
 

@@ -14,7 +14,7 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value = ["collectionId"])] // For faster lookups
+    indices = [Index(value = ["chapterId"])] // For faster lookups
 )
 data class ChapterEntity(
     @PrimaryKey

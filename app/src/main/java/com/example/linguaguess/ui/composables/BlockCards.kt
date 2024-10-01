@@ -30,15 +30,17 @@ import androidx.compose.ui.unit.sp
 import com.example.linguaguess.R
 import com.example.linguaguess.domain.model.Block
 import com.example.linguaguess.ui.theme.BgColor
-import com.example.linguaguess.ui.theme.BgGreen
-import com.example.linguaguess.ui.theme.BorderGreen
+import com.example.linguaguess.ui.theme.DirtyGreen
+import com.example.linguaguess.ui.theme.DarkGreen
 import com.example.linguaguess.ui.theme.FederalBlue
-import com.example.linguaguess.ui.theme.LightGreen
+import com.example.linguaguess.ui.theme.BgGreen
 
 @Composable
 fun BlockCardBoxNotStarted(
     modifier: Modifier = Modifier,
-    onNavigateToQuiz: (String) -> Unit,
+    onNavigateToQuiz: (String, String, String) -> Unit,
+    collectionid: Long,
+    chapterId: Long,
     block: Block,
 ) {
     Box(
@@ -52,7 +54,13 @@ fun BlockCardBoxNotStarted(
                     topStart = 16.dp, topEnd = 16.dp, bottomEnd = 16.dp, bottomStart = 16.dp
                 )
             )
-            .clickable(onClick = { onNavigateToQuiz(block.blockNumber.toString()) })
+            .clickable(onClick = {
+                onNavigateToQuiz(
+                    collectionid.toString(),
+                    chapterId.toString(),
+                    block.blockPosition.toString()
+                )
+            })
     ) {
         Row(
             modifier = Modifier.fillMaxSize()
@@ -77,7 +85,7 @@ fun BlockCardBoxNotStarted(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "${block.blockNumber}º",
+                        text = "${block.blockPosition}º",
                         fontSize = 60.sp, // Adjust the size as needed
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
@@ -140,7 +148,9 @@ fun BlockCardBoxNotStarted(
 @Composable
 fun BlockCardBoxStarted(
     modifier: Modifier = Modifier,
-    onNavigateToQuiz: (String) -> Unit,
+    onNavigateToQuiz: (String, String, String) -> Unit,
+    collectionid: Long,
+    chapterId: Long,
     block: Block,
 ) {
     Box(
@@ -154,7 +164,13 @@ fun BlockCardBoxStarted(
                     topStart = 16.dp, topEnd = 16.dp, bottomEnd = 16.dp, bottomStart = 16.dp
                 )
             )
-            .clickable(onClick = { onNavigateToQuiz(block.blockNumber.toString()) })
+            .clickable(onClick = {
+                onNavigateToQuiz(
+                    collectionid.toString(),
+                    chapterId.toString(),
+                    block.blockPosition.toString()
+                )
+            })
     ) {
         Row(
             modifier = Modifier.fillMaxSize()
@@ -179,7 +195,7 @@ fun BlockCardBoxStarted(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "${block.blockNumber}º",
+                        text = "${block.blockPosition}º",
                         fontSize = 60.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
@@ -198,7 +214,7 @@ fun BlockCardBoxStarted(
                     .weight(0.6f)
                     .fillMaxHeight()
                     .clip(RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp))
-                    .background(LightGreen)
+                    .background(BgGreen)
 
             ) {
                 Column(
@@ -216,10 +232,16 @@ fun BlockCardBoxStarted(
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
+                    val percentage = if (block.totalWords != 0) {
+                        (block.correctWords.toDouble() / block.totalWords.toDouble()) * 100
+                    } else {
+                        0.0 // or any other default value you want to use in case of division by zero
+                    }
+
                     ProgressBarSquare(
-                        borderColor = BorderGreen,
-                        progressColor = BgGreen,
-                        progress =70.0,
+                        borderColor = DarkGreen,
+                        progressColor = DirtyGreen,
+                        progress = percentage,
                         totalScore = block.totalWords,
                         currentScore = block.correctWords
                     )

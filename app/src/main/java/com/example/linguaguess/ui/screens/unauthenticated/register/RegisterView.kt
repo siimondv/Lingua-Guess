@@ -51,6 +51,7 @@ fun RegisterView(
 ) {
 
 
+
     // Full Screen Content
     Column(
 
@@ -101,7 +102,7 @@ fun RegisterView(
                         label = stringResource(id = R.string.registration_user_name_label),
                         icon = Icons.Outlined.Person,
                         isError = registerState.errorState.nameErrorState.hasError,
-                        errorText = stringResource(id = registerState.errorState.nameErrorState.errorMessageStringResource),
+                        errorText = registerState.errorState.nameErrorState.errorMessage,
                         imeAction = ImeAction.Next
                     )
                     // Email
@@ -114,7 +115,7 @@ fun RegisterView(
                         label = stringResource(id = R.string.registration_email_label),
                         icon = Icons.Outlined.Email,
                         isError = registerState.errorState.emailErrorState.hasError,
-                        errorText = stringResource(id = registerState.errorState.emailErrorState.errorMessageStringResource),
+                        errorText = registerState.errorState.emailErrorState.errorMessage,
                         imeAction = ImeAction.Next
                     )
 
@@ -129,7 +130,7 @@ fun RegisterView(
                         label = stringResource(id = R.string.registration_password_label),
                         icon = Icons.Outlined.Lock,
                         isError = registerState.errorState.passwordErrorState.hasError,
-                        errorText = stringResource(id = registerState.errorState.passwordErrorState.errorMessageStringResource),
+                        errorText = registerState.errorState.passwordErrorState.errorMessage,
                         imeAction = ImeAction.Next
                     )
 
@@ -143,7 +144,7 @@ fun RegisterView(
                         label = stringResource(id = R.string.registration_confirm_password_label),
                         icon = Icons.Outlined.Lock,
                         isError = registerState.errorState.confirmPasswordErrorState.hasError,
-                        errorText = stringResource(id = registerState.errorState.confirmPasswordErrorState.errorMessageStringResource),
+                        errorText = registerState.errorState.confirmPasswordErrorState.errorMessage,
                         imeAction = ImeAction.Done
                     )
                 }

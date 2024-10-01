@@ -67,7 +67,7 @@ fun LoginView(
                     label = stringResource(id = R.string.login_email_label),
                     icon = Icons.Outlined.Email,
                     isError = loginState.errorState.emailErrorState.hasError,
-                    errorText = stringResource(id = loginState.errorState.emailErrorState.errorMessageStringResource),
+                    errorText = loginState.errorState.emailErrorState.errorMessage,
                     imeAction = ImeAction.Next
                 )
                 PasswordTextField(
@@ -79,7 +79,7 @@ fun LoginView(
                     label = stringResource(id = R.string.login_password_label),
                     icon = Icons.Outlined.Lock,
                     isError = loginState.errorState.passwordErrorState.hasError,
-                    errorText = stringResource(id = loginState.errorState.passwordErrorState.errorMessageStringResource),
+                    errorText = loginState.errorState.passwordErrorState.errorMessage,
                     imeAction = ImeAction.Next
                 )
             }
@@ -91,8 +91,8 @@ fun LoginView(
             )
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_extra_small)))
             AccountQueryComponent(
-                text = "Don't have an account? ",
-                textClickable = "Register",
+                text = stringResource(R.string.no_account_question),
+                textClickable = stringResource(R.string.register_LoginView),
                 onClick = onNavigateToRegister
             )
         }

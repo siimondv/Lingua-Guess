@@ -1,9 +1,18 @@
 package com.example.linguaguess.ui.screens.authenticated.quiz
 
-import com.example.linguaguess.R
 import com.example.linguaguess.ui.common.ErrorState
+import com.example.linguaguess.utils.Constants
 
-val wrongAnswerErrorState = ErrorState(
+
+val wordsNotLoadedErrorState = ErrorState(
     hasError = true,
-    errorMessageStringResource = R.string.the_answer_is_wrong_try_again
+    errorMessage = Constants.QUIZ_WORDS_NOT_LOADED_ERROR_MSG
 )
+
+val quizFinishedFailErrorState = ErrorState(
+    hasError = true,
+    errorMessage = Constants.QUIZ_FINISHED_FAIL_ERROR_MSG
+)
+
+
+

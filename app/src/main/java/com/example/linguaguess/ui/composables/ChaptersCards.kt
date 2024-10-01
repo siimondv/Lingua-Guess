@@ -35,7 +35,8 @@ import com.example.linguaguess.ui.theme.BgColor
 @Composable
 fun ChaptersCardBox(
     modifier: Modifier = Modifier,
-    onNavigateToBlocksDetail: (String) -> Unit,
+    onNavigateToBlocksDetail: (String, String, String) -> Unit,
+    collectionId: Long,
     chapter: Chapter,
 
     ) {
@@ -51,7 +52,13 @@ fun ChaptersCardBox(
                     topStart = 16.dp, topEnd = 16.dp, bottomEnd = 16.dp, bottomStart = 16.dp
                 )
             )
-            .clickable(onClick = { onNavigateToBlocksDetail(chapter.chapterNumber.toString()) })
+            .clickable(onClick = {
+                onNavigateToBlocksDetail(
+                    collectionId.toString(),
+                    chapter.chapterId.toString(),
+                    chapter.chapterNumber.toString()
+                )
+            })
     ) {
         Row(
             modifier = Modifier.fillMaxSize()
@@ -113,7 +120,7 @@ fun ChaptersCardBox(
                         color = Color.Black
                     )
                     Text(
-                        text = stringResource(R.string.words),
+                        text = stringResource(R.string.words_chaptersDetail),
                         fontSize = 25.sp, // Adjust the size as needed
                         fontWeight = FontWeight.W400,
                         color = Color.Black
@@ -126,12 +133,18 @@ fun ChaptersCardBox(
                             .width(2.dp)
                     )
                     Spacer(modifier = Modifier.weight(1f))
+                    val percentage = if (chapter.blockCount != 0) {
+                        (chapter.completedBlockCount.toDouble() / chapter.blockCount.toDouble()) * 100
+                    } else {
+                        0.0 // or any other default value you want to use in case of division by zero
+                    }
+
                     ProgressBarSquare(
                         borderColor = Color.Gray,
                         progressColor = Color.LightGray,
-                        progress = 5.8823,
-                        totalScore = 17,
-                        currentScore = 1
+                        progress = percentage,
+                        totalScore = chapter.blockCount,
+                        currentScore = chapter.completedBlockCount
                     )
                     Spacer(modifier = Modifier.weight(1f))
                 }

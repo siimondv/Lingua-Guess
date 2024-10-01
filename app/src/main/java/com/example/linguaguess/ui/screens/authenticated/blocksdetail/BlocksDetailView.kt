@@ -1,5 +1,8 @@
 package com.example.linguaguess.ui.screens.authenticated.blocksdetail
 
+import android.annotation.SuppressLint
+import android.widget.Toast
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,42 +11,90 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.Scaffold
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.SnackbarDuration
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.linguaguess.domain.model.Block
 import com.example.linguaguess.ui.composables.BlockCardBoxNotStarted
 import com.example.linguaguess.ui.composables.BlockCardBoxStarted
+import com.example.linguaguess.ui.composables.CommonError
 import com.example.linguaguess.ui.composables.GoBackTopBar
+import com.example.linguaguess.ui.screens.authenticated.chaptersdetail.ChapterDetailContent
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun BlocksDetailView(
     onNavigateBack: () -> Unit,
-    onNavigateToQuiz: (String) -> Unit,
+    onNavigateToQuiz: (String, String, String) -> Unit,
+    collectionId: Long,
     chapterId: Long,
+    getBlocksByChapterId: (Long, Long) -> Unit,
     blocksState: BlocksState,
 ) {
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
+    val scaffoldState = rememberScaffoldState()
 
-    ) {
-        GoBackTopBar(
-            onClick = onNavigateBack,
-        )
 
-        BlockDetailContent(
-            onNavigateToQuiz = onNavigateToQuiz,
-            blocksState = blocksState,
-        )
-    }
+    LaunchedEffect(key1 = true, block = {
+        getBlocksByChapterId(collectionId, chapterId)
+    })
+
+    Scaffold(scaffoldState = scaffoldState, content = {
+        Column(
+            modifier = Modifier.fillMaxSize()
+
+        ) {
+            GoBackTopBar(
+                onClick = onNavigateBack,
+            )
+
+            when {
+                blocksState.errorState.blockErrorState.hasError -> {
+                    CommonError(onRetryClicked = {
+                        getBlocksByChapterId(collectionId, chapterId)
+                    })
+                }
+
+                blocksState.isLoading -> {
+                    // Show loading indicator
+                    Box(
+                        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                }
+
+                else -> {
+                    // Show content when there's no error and loading is done
+                    BlockDetailContent(
+                        onNavigateToQuiz = onNavigateToQuiz,
+                        collectionid = collectionId,
+                        chapterId = chapterId,
+                        blocksState = blocksState,
+                    )
+                }
+            }
+        }
+    })
+
 
 }
 
 @Composable
 private fun BlockDetailContent(
-    onNavigateToQuiz: (String) -> Unit,
+    onNavigateToQuiz: (String, String, String) -> Unit,
+    collectionid: Long,
+    chapterId: Long,
     blocksState: BlocksState,
 ) {
     LazyColumn(
@@ -58,6 +109,8 @@ private fun BlockDetailContent(
                     .padding(12.dp)
                     .fillMaxWidth(),
                 onNavigateToQuiz = onNavigateToQuiz,
+                collectionid = collectionid,
+                chapterId = chapterId,
                 block = item,
             )
         }
@@ -71,21 +124,25 @@ private fun BlockDetailContent(
 @Composable
 private fun BlockItem(
     modifier: Modifier = Modifier,
-    onNavigateToQuiz: (String) -> Unit,
+    onNavigateToQuiz: (String, String, String) -> Unit,
+    collectionid: Long,
+    chapterId: Long,
     block: Block,
 ) {
-    if (block.isStarted)
-        BlockCardBoxStarted(
-            modifier = modifier,
-            onNavigateToQuiz = onNavigateToQuiz,
-            block = block
-        )
-    else
-        BlockCardBoxNotStarted(
-            modifier = modifier,
-            onNavigateToQuiz = onNavigateToQuiz,
-            block = block
-        )
+    if (block.isStarted) BlockCardBoxStarted(
+        modifier = modifier,
+        onNavigateToQuiz = onNavigateToQuiz,
+        collectionid = collectionid,
+        chapterId = chapterId,
+        block = block
+    )
+    else BlockCardBoxNotStarted(
+        modifier = modifier,
+        onNavigateToQuiz = onNavigateToQuiz,
+        collectionid = collectionid,
+        chapterId = chapterId,
+        block = block
+    )
 
 
 }

@@ -18,6 +18,7 @@ fun LibraryScreen(
     LibraryView(
         onNavigateToCollectionDetail = onNavigateToCollectionDetail,
         onNavigateToChaptersDetail = onNavigateToChaptersDetail,
+        getAllCollections = libraryViewModel::getAllCollections,
         libraryState = uiState,
     )
 

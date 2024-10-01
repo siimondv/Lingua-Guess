@@ -8,7 +8,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun QuizScreen(
     onNavigateBack: () -> Unit,
-    collectionId: String
+    collectionId: Long,
+    chapterId: Long,
+    blockPosition: Long
 ) {
 
     val quizViewModel: QuizViewModel = hiltViewModel()
@@ -17,13 +19,20 @@ fun QuizScreen(
     QuizView(
         onNavigateBack = onNavigateBack,
         collectionId = collectionId,
+        chapterId = chapterId,
+        blockPosition = blockPosition,
         quizState = uiState,
-        getWordList = { },
+        getWordList = { chapterId, blockPosition ->
+            quizViewModel.getWordList(chapterId, blockPosition)
+        },
         onNextWord = quizViewModel::nextWord,
         onReset = quizViewModel::reset,
         onCheckAnswerChange = quizViewModel::setCheckAnswerEnabled,
         onGoodAnswer = quizViewModel::goodAnswer,
         onBadAnswer = quizViewModel::badAnswer,
+        onFinish = { collectionId, chapterId, blockPosition ->
+            quizViewModel.finish(collectionId, chapterId, blockPosition)
+        }
 
-        )
+    )
 }

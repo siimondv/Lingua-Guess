@@ -15,15 +15,14 @@
     <string name="icon_password_visible">Password Visible</string>
     <string name="icon_password_hidden">Password Hidden</string>
     <string name="hey_there">Hey, there</string>
-    <string name="welcome_back">Welcome Back</string>s
+    <string name="welcome_back">Welcome Back</string>
+    <string name="no_account_question">"Don't have an account? "</string>
+    <string name="register_LoginView">Register</string>
 
-    <!--Login Error Messages-->
-    <string name="login_error_msg_empty_email">Please enter your email</string>
-    <string name="login_error_msg_empty_password">Please enter your password</string>
 
     <!--Login Page - Register Section-->
     <string name="do_not_have_account">Don\'t have an account?</string>
-    <string name="register">Register</string>
+    <string name="register_RegisterView">Register</string>
 
     <!--Register-->
     <string name="registration_heading_text">Registration</string>
@@ -37,44 +36,30 @@
     <string name="hello_there">Hello there,</string>
     <string name="create_an_account">Create an Account</string>
 
-    <!--Register Error Messages-->
-    <string name="registration_error_msg_empty_name">Please enter your user name</string>
-    <string name="registration_error_msg_empty_email">Please enter your email</string>
-    <string name="registration_error_msg_empty_mobile">Please enter your mobile number</string>
-    <string name="registration_error_msg_empty_password">Please enter your password</string>
-    <string name="registration_error_msg_empty_confirm_password">Please confirm your password</string>
-    <string name="registration_error_msg_password_mismatch">Please enter the same password here as above</string>
-
-    <!--Dashboard-->
-    <string name="dashboard_title_welcome_user">Welcome User</string>
-
-    <!--Quiz-->
-    <string name="the_answer_is_wrong_try_again">The answer is wrong. Try again!</string>
-    <string name="type_your_answer">Type your answer</string>
-    <string name="show_answer">ANSWER</string>
-    <string name="did_you_get_it_right">Did you get it right???</string>
-
-    <!--Go back Top Bar-->
-    <string name="go_back">Go back</string>
-
-    <!--CollectionDetail-->
-    <string name="download">Download</string>
-    <string name="start_learning">Start Learning</string>
-    <string name="description">Description</string>
-
     <!--Bottom Navigation-->
     <string name="store">Store</string>
     <string name="library">Library</string>
     <string name="settings">Settings</string>
 
-    <!-- CollectionJ Card Icons -->
-    <string name="download_icon">Download Icon</string>
-    <string name="info_icon">Info Icon</string>
-    <string name="play_icon">Play Icon</string>
+    <!--Go back Top Bar-->
+    <string name="go_back">Go back</string>
+
+    <!-- Download -->
+
+    <!-- Library -->
+
+    <!-- Settings -->
+
+    <!--CollectionDetail-->
+    <string name="download">Download</string>
+    <string name="start_learning">Start Learning</string>
+    <string name="description">Description</string>
+    <string name="chapters">chapters</string>
+    <string name="words_collectionDetail">words</string>
 
     <!-- Chapters Detail -->
     <string name="chapter">CHAPTER</string>
-    <string name="words">WORDS</string>
+    <string name="words_chaptersDetail">WORDS</string>
 
     <!-- Blocks Detail -->
     <string name="block">BLOCK</string>
@@ -82,8 +67,54 @@
     <string name="play">PLAY !</string>
     <string name="best_score">BEST SCORE:</string>
 
-    <!-- Collection Detail Error Messages -->
-    <string name="collectiondetail_error_msg_common">There has been an error retrieving the collection. Please try again later.</string>
+    <!--Quiz-->
+    <string name="the_answer_is_wrong_try_again">The answer is wrong. Try again!</string>
+    <string name="type_your_answer">Type your answer</string>
+    <string name="show_answer">ANSWER</string>
+    <string name="did_you_get_it_right">Did you get it right???</string>
+    <string name="finish">FINISH</string>
+
+    <!-- Collection Card Icons -->
+    <string name="download_icon">Download Icon</string>
+    <string name="info_icon">Info Icon</string>
+    <string name="play_icon">Play Icon</string>
+
+    <!-- AccountQueryComponent -->
+    <string name="clickable">clickable</string>
+
+    <!-- GoodBadButtons -->
+    <string name="bad">Bad</string>
+    <string name="good">Good</string>
+
+    <!-- UsualTextField -->
+    <string name="profile_UsualTextField">profile</string>
+
+    <!-- EmailTextField -->
+    <string name="profile_EmailTextField">profile</string>
+
+    <!-- PasswordTextField -->
+    <string name="profile_PasswordTextField">profile</string>
+
+    <!-- AnswerBox -->
+    <string name="answer">Answer:</string>
+
+    <!-- CollectionCard -->
+    <string name="words_CollectionCardBox">" WORDS"</string>
+    <string name="chapters_CollectionCardBox">" CHAPTERS"</string>
+
+    <!-- CollectionCardIsDownloaded -->
+    <string name="words_CollectionCardIsDownloadedBox">" WORDS"</string>
+    <string name="chapters_CollectionCardIsDownloadedBox">" CHAPTERS"</string>
+    <string name="downloaded_CollectionCardIsDownloaded">Downloaded</string>
+
+    <!-- CommonError -->
+    <string name="there_has_been_an_unexpected_error">There has been an unexpected error</string>
+    <string name="retry_CommonError">Retry</string>
+
+    <!-- NetworkError -->
+    <string name="connection_error">There has been a connection error</string>
+    <string name="retry_NetworkError">Retry</string>
+
 
 
 </resources>

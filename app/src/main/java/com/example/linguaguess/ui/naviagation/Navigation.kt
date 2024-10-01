@@ -67,7 +67,7 @@ fun NavGraphBuilder.unauthenticatedGraph(navController: NavController) {
 fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
     navigation(
         route = NavigationRoutes.Authenticated.NavigationRoute.route,
-        startDestination = NavigationRoutes.Authenticated.BottomBar.Store.route
+        startDestination = NavigationRoutes.Authenticated.BottomBar.Library.route
     ) {
         /*
         // Dashboard
@@ -148,7 +148,7 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
 
             CollectionDetailScreen(
                 onNavigateBack = {
-                    navController.navigateUp()
+                    navController.popBackStack()
                 },
 
                 onNavigateToChaptersDetail = {
@@ -163,7 +163,7 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
             )
         }
 
-        //Chapters CollectionDetail
+        //Chapters
         composable(
             route = NavigationRoutes.Authenticated.ChaptersDetail.route,
             arguments = listOf(
@@ -176,17 +176,19 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
 
             ChaptersDetailScreen(
                 onNavigateBack = {
-                    navController.navigateUp()
+                    navController.popBackStack()
                 },
-                onNavigateToBlocksDetail = {
+                onNavigateToBlocksDetail = { firstId, secondId, thirdId ->
                     navController.safeNavigate(
                         from = from,
-                        route = NavigationRoutes.Authenticated.BlocksDetail.withCollectionId(
-                            it
+                        route = NavigationRoutes.Authenticated.BlocksDetail.withIds(
+                            firstId,
+                            secondId,
+                            thirdId
                         )
                     )
                 },
-                chapterId = collectionId
+                collectionId = collectionId
             )
         }
 
@@ -196,37 +198,63 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
             arguments = listOf(
                 navArgument(ARG_ID) {
                     type = NavType.LongType
+                },
+                navArgument(ARG_ID2) {
+                    type = NavType.LongType
+                },
+                navArgument(ARG_ID3) {
+                    type = NavType.LongType
                 }
             ),
         ) { from ->
-            val chapterId = from.arguments?.getLong(ARG_ID) ?: -1
+            val collectionId = from.arguments?.getLong(ARG_ID) ?: -1
+            val chapterId = from.arguments?.getLong(ARG_ID2) ?: -1
+            val chapterNumber = from.arguments?.getLong(ARG_ID3) ?: -1
 
             BlocksDetailScreen(
                 onNavigateBack = {
-                    navController.navigateUp()
+                    navController.popBackStack()
                 },
-                onNavigateToQuiz = {
+                onNavigateToQuiz = { firstId, secondId, thirdId ->
                     navController.safeNavigate(
                         from = from,
-                        route = NavigationRoutes.Authenticated.Quiz.withCollectionId(
-                            it
+                        route = NavigationRoutes.Authenticated.Quiz.withIds(
+                            firstId, secondId, thirdId
                         )
                     )
                 },
-                chapterId = chapterId
+                collectionId = collectionId,
+                chapterId = chapterId,
+                chapterNumber = chapterNumber
             )
         }
 
         // Quiz
-        composable(route = NavigationRoutes.Authenticated.Quiz.route) { navBackStackEntry ->
-
-            val collectionId = navBackStackEntry.arguments?.getString(ARG_ID) ?: ""
+        composable(
+            route = NavigationRoutes.Authenticated.Quiz.route,
+            arguments = listOf(
+                navArgument(ARG_ID) {
+                    type = NavType.LongType
+                },
+                navArgument(ARG_ID2) {
+                    type = NavType.LongType
+                },
+                navArgument(ARG_ID3) {
+                    type = NavType.LongType
+                }
+            ),
+        ) { from ->
+            val collectionId = from.arguments?.getLong(ARG_ID) ?: -1
+            val chapterId = from.arguments?.getLong(ARG_ID2) ?: -1
+            val blockPosition = from.arguments?.getLong(ARG_ID3) ?: -2
 
             QuizScreen(
                 onNavigateBack = {
-                    navController.navigateUp()
+                    navController.popBackStack()
                 },
-                collectionId = collectionId
+                collectionId = collectionId,
+                chapterId = chapterId,
+                blockPosition = blockPosition
             )
         }
 

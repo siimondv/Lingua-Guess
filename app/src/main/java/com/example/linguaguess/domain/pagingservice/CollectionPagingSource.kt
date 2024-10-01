@@ -6,23 +6,19 @@ import com.example.linguaguess.data.mappers.toCollectionJ
 import com.example.linguaguess.data.remote.model.CollectionDto
 import com.example.linguaguess.domain.model.CollectionJ
 import com.example.linguaguess.domain.model.Page
-import com.example.linguaguess.domain.service.GetCollectionsUseCase
+import com.example.linguaguess.domain.service.remote.GetRemoteCollectionsUseCase
 import com.example.linguaguess.utils.NetworkResult
 
 
-class CollectionPagingSource : PagingSource<Int, CollectionJ> {
-
-    private val getCollectionsUseCase: GetCollectionsUseCase
-
-    constructor(getCollectionsUseCase: GetCollectionsUseCase) {
-        this.getCollectionsUseCase = getCollectionsUseCase
-    }
+class CollectionPagingSource(private val getRemoteCollectionsUseCase: GetRemoteCollectionsUseCase) :
+    PagingSource<Int, CollectionJ>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CollectionJ> {
         return try {
             val position = params.key ?: 0
 
-            val responsePage: NetworkResult<Page<CollectionDto>> = getCollectionsUseCase(position)
+            val responsePage: NetworkResult<Page<CollectionDto>> =
+                getRemoteCollectionsUseCase(position)
 
             if (responsePage is NetworkResult.Error) {
                 return LoadResult.Error(Exception(responsePage.message))

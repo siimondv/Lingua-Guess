@@ -8,6 +8,7 @@ data class CollectionDto(
     val countryCode: String = "",
     val totalWords: Int = 0,
     val totalChapters: Int = 0,
-    val difficultyLevel: DifficultyLevel = DifficultyLevel.EASY
+    val difficultyLevel: DifficultyLevel = DifficultyLevel.EASY,
+    var isDownloaded: Boolean = false
 )
 

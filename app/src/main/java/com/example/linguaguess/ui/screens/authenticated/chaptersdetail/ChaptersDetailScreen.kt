@@ -8,8 +8,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun ChaptersDetailScreen(
     onNavigateBack: () -> Unit,
-    onNavigateToBlocksDetail: (String) -> Unit,
-    chapterId: Long,
+    onNavigateToBlocksDetail: (String, String, String) -> Unit,
+    collectionId: Long,
 ) {
 
     val chaptersDetailViewModel: ChaptersDetailViewModel = hiltViewModel()
@@ -18,7 +18,10 @@ fun ChaptersDetailScreen(
     ChaptersDetailView(
         onNavigateBack = onNavigateBack,
         onNavigateToBlocksDetail = onNavigateToBlocksDetail,
-        collectionId = chapterId,
+        collectionId = collectionId,
+        getAllChaptersByCollectionId = {
+            chaptersDetailViewModel.getAllChaptersByCollectionId(collectionId)
+        },
         chaptersState = uiState,
     )
 

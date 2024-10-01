@@ -9,7 +9,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.linguaguess.R
 
 
+
+
 const val ARG_ID = "id"
+const val ARG_ID2 = "id2"
+const val ARG_ID3 = "id3"
 
 sealed class NavigationRoutes {
 
@@ -54,18 +58,24 @@ sealed class NavigationRoutes {
             }
         }
 
-        data object BlocksDetail : Authenticated(route = "BlocksDetail/{$ARG_ID}") {
-            fun withCollectionId(id: String): String {
-                return this.route.replace("{$ARG_ID}", id)
+        data object BlocksDetail :
+            Authenticated(route = "BlocksDetail/{$ARG_ID}/{$ARG_ID2}/{$ARG_ID3}") {
+            fun withIds(id: String, id2: String, id3: String): String {
+                return this.route
+                    .replace("{$ARG_ID}", id)
+                    .replace("{$ARG_ID2}", id2)
+                    .replace("{$ARG_ID3}", id3)
             }
         }
 
-        data object Quiz : Authenticated(route = "Quiz/{$ARG_ID}") {
-            fun withCollectionId(id: String): String {
-                return this.route.replace("{$ARG_ID}", id)
+        data object Quiz : Authenticated(route = "Quiz/{$ARG_ID}/{$ARG_ID2}/{$ARG_ID3}") {
+            fun withIds(id: String, id2: String, id3: String): String {
+                return this.route
+                    .replace("{$ARG_ID}", id)
+                    .replace("{$ARG_ID2}", id2)
+                    .replace("{$ARG_ID3}", id3)
             }
         }
-
 
 
     }

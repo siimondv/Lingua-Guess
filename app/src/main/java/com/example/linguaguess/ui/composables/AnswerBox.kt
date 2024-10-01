@@ -15,12 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.linguaguess.R
 import com.example.linguaguess.ui.theme.FederalBlue
 import com.example.linguaguess.ui.theme.IncorrectRed
-import com.example.linguaguess.ui.theme.MarianBlue
 
 
 @Composable
@@ -46,7 +48,7 @@ fun AnswerBox(text: String = "") {
 
             ) {
                 Text(
-                    text = "Answer:",
+                    text = stringResource(R.string.answer),
                     fontSize = 40.sp,
                     fontWeight = FontWeight.Bold,
                     color = color,
@@ -56,20 +58,16 @@ fun AnswerBox(text: String = "") {
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
 
-                ) {
-                Text(
-                    text = text,
-                    fontSize = 26.sp, // Increased text size
-                    fontWeight = FontWeight.Bold,
-                    color = color,
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
+            Text(
+                text = text,
+                fontSize = 26.sp, // Increased text size
+                fontWeight = FontWeight.Bold,
+                color = color,
+                textAlign = TextAlign.Center,  // Center-align text inside Text composable
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
 
-                )
-            }
 
         }
 

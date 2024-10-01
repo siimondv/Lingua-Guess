@@ -4,14 +4,20 @@ import android.content.Context
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.room.Room
+import com.example.linguaguess.data.local.dao.ChapterDao
+import com.example.linguaguess.data.local.dao.CollectionDao
+import com.example.linguaguess.data.local.dao.CollectionWithChaptersAndWordsDao
+import com.example.linguaguess.data.local.dao.JapaneseWordDao
+import com.example.linguaguess.data.local.dao.ScoreDao
 import com.example.linguaguess.data.local.database.CollectionDatabase
 import com.example.linguaguess.data.remote.apis.ChapterApiService
 import com.example.linguaguess.data.remote.apis.CollectionApiService
 import com.example.linguaguess.data.remote.apis.JapaneseWordApiService
 import com.example.linguaguess.domain.model.CollectionJ
 import com.example.linguaguess.domain.pagingservice.CollectionPagingSource
-import com.example.linguaguess.domain.service.GetCollectionsUseCase
+import com.example.linguaguess.domain.service.remote.GetRemoteCollectionsUseCase
 import com.example.linguaguess.utils.Constants
+import com.example.linguaguess.utils.NetworkStatusTracker
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
@@ -35,6 +41,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -109,17 +116,17 @@ object AppModule {
 
 
     @Provides
-    @Singleton
-    fun provideCollectionPager(getCollectionsUseCase: GetCollectionsUseCase): Pager<Int, CollectionJ> {
+    fun provideCollectionPager(getRemoteCollectionsUseCase: GetRemoteCollectionsUseCase): Pager<Int, CollectionJ> {
         return Pager(config = PagingConfig(
             pageSize = 10,
             initialLoadSize = 10,
             prefetchDistance = 10,
             enablePlaceholders = false
         ), pagingSourceFactory = {
-            CollectionPagingSource(getCollectionsUseCase)
+            CollectionPagingSource(getRemoteCollectionsUseCase)
         })
     }
+
 
     @Provides
     @Singleton
@@ -127,7 +134,33 @@ object AppModule {
         return Room.databaseBuilder(
             context,
             CollectionDatabase::class.java,
-            "collections.db"
+            Constants.LOCAL_DATABASE_NAME
         ).build()
     }
+
+    @Provides
+    fun provideChapterDao(appDatabase: CollectionDatabase): ChapterDao {
+        return appDatabase.chapterDao
+    }
+
+    @Provides
+    fun provideJapaneseWordDao(appDatabase: CollectionDatabase): JapaneseWordDao {
+        return appDatabase.japaneseWordDao
+    }
+
+    @Provides
+    fun provideCollectionDao(appDatabase: CollectionDatabase): CollectionDao {
+        return appDatabase.collectionDao
+    }
+
+    @Provides
+    fun provideCollectionWithChaptersAndWordsDao(appDatabase: CollectionDatabase): CollectionWithChaptersAndWordsDao {
+        return appDatabase.collectionWithChaptersAndWordsDao
+    }
+
+    @Provides
+    fun provideScoreDao(appDatabase: CollectionDatabase): ScoreDao {
+        return appDatabase.scoreDao
+    }
 }
+

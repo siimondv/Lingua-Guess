@@ -58,7 +58,7 @@ fun GoBackTopBar(
 
 
                 Text(
-                    text = "go back",
+                    text = stringResource(id = R.string.go_back),
                     modifier = Modifier.padding(bottom = 2.dp),
                     color = MaterialTheme.colorScheme.onBackground,
                     fontStyle = MaterialTheme.typography.headlineMedium.fontStyle,

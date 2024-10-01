@@ -2,33 +2,34 @@ package com.example.linguaguess.ui.screens.unauthenticated.register
 
 import com.example.linguaguess.R
 import com.example.linguaguess.ui.common.ErrorState
+import com.example.linguaguess.utils.Constants
 
 val nameEmptyErrorState = ErrorState(
     hasError = true,
-    errorMessageStringResource = R.string.registration_error_msg_empty_name
+    errorMessage = Constants.REGISTRATION_ERROR_MSG_EMPTY_NAME
 )
 
 val emailEmptyErrorState = ErrorState(
     hasError = true,
-    errorMessageStringResource = R.string.registration_error_msg_empty_email
+    errorMessage = Constants.REGISTRATION_ERROR_MSG_EMPTY_EMAIL
 )
 
 val mobileNumberEmptyErrorState = ErrorState(
     hasError = true,
-    errorMessageStringResource = R.string.registration_error_msg_empty_mobile
+    errorMessage = Constants.REGISTRATION_ERROR_MSG_EMPTY_MOBILE
 )
 
 val passwordEmptyErrorState = ErrorState(
     hasError = true,
-    errorMessageStringResource = R.string.registration_error_msg_empty_password
+    errorMessage = Constants.REGISTRATION_ERROR_MSG_EMPTY_PASSWORD
 )
 
 val confirmPasswordEmptyErrorState = ErrorState(
     hasError = true,
-    errorMessageStringResource = R.string.registration_error_msg_empty_confirm_password
+    errorMessage = Constants.REGISTRATION_ERROR_MSG_EMPTY_CONFIRM_PASSWORD
 )
 
 val passwordMismatchErrorState = ErrorState(
     hasError = true,
-    errorMessageStringResource = R.string.registration_error_msg_password_mismatch
+    errorMessage = Constants.REGISTRATION_ERROR_MSG_PASSWORD_MISMATCH
 )

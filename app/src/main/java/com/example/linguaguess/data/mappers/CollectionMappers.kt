@@ -13,6 +13,7 @@ fun CollectionDto.toCollectionJ(): CollectionJ {
         totalWords = totalWords,
         totalChapters = totalChapters,
         difficultyLevel = difficultyLevel,
+        isDownloaded = isDownloaded,
     )
 }
 
@@ -25,11 +26,24 @@ fun CollectionDetailDto.toCollectionJ(): CollectionJ {
         totalWords = totalWords,
         totalChapters = totalChapters,
         difficultyLevel = difficultyLevel,
+        isDownloaded = isDownloaded,
     )
 }
 
 fun CollectionDetailDto.toCollectionEntity(): CollectionEntity {
     return CollectionEntity(
+        collectionId = collectionId,
+        collectionName = collectionName,
+        collectionDescription = collectionDescription,
+        countryCode = countryCode,
+        totalWords = totalWords,
+        totalChapters = totalChapters,
+        difficultyLevel = difficultyLevel,
+    )
+}
+
+fun CollectionEntity.toCollectionJ(): CollectionJ {
+    return CollectionJ(
         collectionId = collectionId,
         collectionName = collectionName,
         collectionDescription = collectionDescription,

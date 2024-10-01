@@ -19,11 +19,17 @@ import com.example.linguaguess.ui.naviagation.authenticatedGraph
 import com.example.linguaguess.ui.naviagation.unauthenticatedGraph
 import com.example.linguaguess.ui.theme.LinguaGuessTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+/*        GlobalScope.launch(Dispatchers.IO) {
+            deleteDatabase("collections.db")
+        }*/
         setContent {
             LinguaGuessTheme {
                 MainScreen(startDestination = NavigationRoutes.Authenticated.NavigationRoute.route)
