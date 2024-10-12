@@ -6,10 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.linguaguess.domain.model.Block
 import com.example.linguaguess.domain.service.local.GetAndUpdateLocalBlocksByCollectionChapterUseCase
 import com.example.linguaguess.ui.common.ErrorState
+import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResultLoading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,12 +25,23 @@ class BlocksDetailViewModel @Inject constructor(
     val uiState = _uiState.asStateFlow()
 
     fun getBlocksByChapterId(collectionId: Long, chapterId: Long) {
-        //TODO añadir errorState al viewmodel y poner catch aqui
         viewModelScope.launch {
             getAndUpdateLocalBLocksByCollectionChapterUseCase(
                 collectionId,
                 chapterId
-            ).collect { result ->
+            ).catch(action = {
+                _uiState.update {
+                    it.copy(
+                        errorState = it.errorState.copy(
+                            blockErrorState = ErrorState(
+                                hasError = true,
+                                errorMessage = Constants.BLOCKS_NOT_LOADED_ERROR_MSG
+                            )
+                        ),
+                        isLoading = false
+                    )
+                }
+            }).collect { result ->
                 when (result) {
                     is NetworkResultLoading.Loading -> {
                         _uiState.value = _uiState.value.copy(
@@ -40,6 +53,7 @@ class BlocksDetailViewModel @Inject constructor(
                         _uiState.update {
                             it.copy(
                                 blockList = result.data ?: emptyList(),
+                                errorState = it.errorState.copy(blockErrorState = ErrorState()),
                                 isLoading = false
                             )
                         }
@@ -48,7 +62,12 @@ class BlocksDetailViewModel @Inject constructor(
                     is NetworkResultLoading.Error -> {
                         _uiState.update {
                             it.copy(
-                                errorState = it.errorState.copy(blockErrorState = blocksNotLoadedErrorState),
+                                errorState = it.errorState.copy(
+                                    blockErrorState = ErrorState(
+                                        hasError = true,
+                                        errorMessage = Constants.BLOCKS_NOT_LOADED_ERROR_MSG
+                                    )
+                                ),
                                 isLoading = false
                             )
                         }

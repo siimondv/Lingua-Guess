@@ -20,6 +20,8 @@ val LightBlack = Color(0xFF313131)
 //Blues for the app
 val FederalBlue = Color(0xFF004C50)
 val IliBlue = Color(0xFF05909B)
+val MyBlue = Color(0xFF00A3FF)
+val MyDarkBlue = Color(0xFF006EAC)
 val TealBlue = Color(0xFF90BDC4)
 
 //Greens for the app

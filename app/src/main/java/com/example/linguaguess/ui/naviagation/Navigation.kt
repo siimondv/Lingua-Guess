@@ -13,6 +13,8 @@ import com.example.linguaguess.ui.extensions.safeNavigate
 import com.example.linguaguess.ui.screens.authenticated.blocksdetail.BlocksDetailScreen
 import com.example.linguaguess.ui.screens.authenticated.library.LibraryScreen
 import com.example.linguaguess.ui.screens.authenticated.quiz.QuizScreen
+import com.example.linguaguess.ui.screens.authenticated.settings.SettingsScreen
+import com.example.linguaguess.ui.screens.unauthenticated.login.LoginScreen
 import com.example.linguaguess.ui.screens.unauthenticated.register.RegisterScreen
 
 
@@ -20,17 +22,16 @@ fun NavGraphBuilder.unauthenticatedGraph(navController: NavController) {
 
     navigation(
         route = NavigationRoutes.Unauthenticated.NavigationRoute.route,
-        startDestination = NavigationRoutes.Unauthenticated.Register.route
+        startDestination = NavigationRoutes.Unauthenticated.Login.route
     ) {
 
         // Login
         composable(route = NavigationRoutes.Unauthenticated.Login.route) {
-            /*
+
             LoginScreen(
-                onNavigateToRegistration = {
+                onNavigateToRegister = {
                     navController.navigate(route = NavigationRoutes.Unauthenticated.Register.route)
                 },
-                onNavigateToForgotPassword = {},
                 onNavigateToAuthenticatedRoute = {
                     navController.navigate(route = NavigationRoutes.Authenticated.NavigationRoute.route) {
                         popUpTo(route = NavigationRoutes.Unauthenticated.NavigationRoute.route) {
@@ -40,21 +41,20 @@ fun NavGraphBuilder.unauthenticatedGraph(navController: NavController) {
                 },
             )
 
-             */
+
         }
 
         // Register
-        composable(route = NavigationRoutes.Unauthenticated.Register.route) {
+        composable(route = NavigationRoutes.Unauthenticated.Register.route) { from ->
             RegisterScreen(
                 onNavigateBack = {
                     navController.navigateUp()
                 },
-                onNavigateToAuthenticatedRoute = {
-                    navController.navigate(route = NavigationRoutes.Authenticated.NavigationRoute.route) {
-                        popUpTo(route = NavigationRoutes.Unauthenticated.NavigationRoute.route) {
-                            inclusive = true
-                        }
-                    }
+                onNavigateToLogin = {
+                    navController.safeNavigate(
+                        from = from,
+                        route = NavigationRoutes.Unauthenticated.Login.route
+                    )
                 }
             )
         }
@@ -129,6 +129,7 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
 
         // Settings
         composable(route = NavigationRoutes.Authenticated.BottomBar.Settings.route) {
+            SettingsScreen()
         }
 
         //CollectionJ CollectionDetail
@@ -144,7 +145,7 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
             popEnterTransition = { popEnterTransition() },
             popExitTransition = { popExitTransition() },
         ) { from ->
-            val collectionId = from.arguments?.getLong(ARG_ID) ?: -1 //TODO handle better solution
+            val collectionId = from.arguments?.getLong(ARG_ID) ?: -1
 
             CollectionDetailScreen(
                 onNavigateBack = {
@@ -172,7 +173,7 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
                 }
             ),
         ) { from ->
-            val collectionId = from.arguments?.getLong(ARG_ID) ?: -1 //TODO handle better solution
+            val collectionId = from.arguments?.getLong(ARG_ID) ?: -1
 
             ChaptersDetailScreen(
                 onNavigateBack = {
@@ -192,7 +193,7 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
             )
         }
 
-        //Blocks Detail
+        //Blocks
         composable(
             route = NavigationRoutes.Authenticated.BlocksDetail.route,
             arguments = listOf(

@@ -1,4 +1,4 @@
-package com.example.linguaguess.data.remote.datasource
+package com.example.linguaguess.data.remote.repository
 
 import com.example.linguaguess.data.remote.apis.JapaneseWordApiService
 import com.example.linguaguess.data.remote.model.JapaneseWordDto
@@ -8,7 +8,7 @@ import com.example.linguaguess.utils.NetworkResult
 import javax.inject.Inject
 
 
-class RemoteJapaneseWordDataSource @Inject constructor(
+class RemoteJapaneseWordRepo @Inject constructor(
     private val japaneseWordApiService: JapaneseWordApiService
 ) {
 

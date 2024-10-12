@@ -60,7 +60,7 @@
     <!-- Chapters Detail -->
     <string name="chapter">CHAPTER</string>
     <string name="words_chaptersDetail">WORDS</string>
-
+º
     <!-- Blocks Detail -->
     <string name="block">BLOCK</string>
     <string name="not_started">NOT STARTED</string>
@@ -80,7 +80,7 @@
     <string name="play_icon">Play Icon</string>
 
     <!-- AccountQueryComponent -->
-    <string name="clickable">clickable</string>
+    <string name="clickable_tag">clickable_tag</string>
 
     <!-- GoodBadButtons -->
     <string name="bad">Bad</string>

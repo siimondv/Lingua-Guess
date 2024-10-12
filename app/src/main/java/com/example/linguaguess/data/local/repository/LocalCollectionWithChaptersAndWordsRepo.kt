@@ -1,4 +1,4 @@
-package com.example.linguaguess.data.local.datasource
+package com.example.linguaguess.data.local.repository
 
 import com.example.linguaguess.data.local.dao.CollectionWithChaptersAndWordsDao
 import com.example.linguaguess.data.local.model.ChapterEntity
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 
 
-class LocalCollectionWithChaptersAndWordsDataSource @Inject constructor(
+class LocalCollectionWithChaptersAndWordsRepo @Inject constructor(
     private val collectionWithChaptersAndWordsDao: CollectionWithChaptersAndWordsDao
 ) {
     suspend fun saveCollectionWithChaptersAndWords(

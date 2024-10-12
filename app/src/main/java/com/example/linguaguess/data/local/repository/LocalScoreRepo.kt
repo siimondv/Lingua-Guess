@@ -1,4 +1,4 @@
-package com.example.linguaguess.data.local.datasource
+package com.example.linguaguess.data.local.repository
 
 import com.example.linguaguess.data.local.dao.ScoreDao
 import com.example.linguaguess.data.local.model.ScoreEntity
@@ -8,7 +8,7 @@ import com.example.linguaguess.utils.NetworkResultLoading
 import javax.inject.Inject
 
 
-class LocalScoreDataSource @Inject constructor(
+class LocalScoreRepo @Inject constructor(
     private val scoreDao: ScoreDao
 ) {
 
@@ -27,17 +27,6 @@ class LocalScoreDataSource @Inject constructor(
         }
     }
 
-    suspend fun getScoreByCollectionAndChapter(
-        collectionId: Long,
-        chapterId: Long,
-    ): NetworkResult<List<ScoreEntity>> {
-        return try {
-            val score = scoreDao.getScoreByCollectionAndChapter(collectionId, chapterId)
-            NetworkResult.Success(score)
-        } catch (e: Exception) {
-            NetworkResult.Error(Constants.SCORE_NOT_RETRIEVED)
-        }
-    }
 
     suspend fun insertScore(scoreEntity: ScoreEntity): NetworkResult<Unit> {
         return try {

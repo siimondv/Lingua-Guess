@@ -23,6 +23,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import com.example.linguaguess.domain.model.Chapter
 import com.example.linguaguess.ui.composables.ChaptersCardBox
@@ -103,7 +104,7 @@ fun ChapterDetailContent(
                 chapter = item,
             )
         }
-        //This is so the last item is not covered by the bottom bar
+
         item {
             Spacer(modifier = Modifier.height(56.dp))
         }

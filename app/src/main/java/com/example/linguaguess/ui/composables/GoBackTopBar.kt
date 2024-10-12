@@ -34,12 +34,13 @@ import com.example.linguaguess.ui.theme.TextColor
 @Composable
 fun GoBackTopBar(
     modifier: Modifier = Modifier,
+    text : String = stringResource(id = R.string.go_back),
     onClick: () -> Unit,
 ) {
     Column(
         modifier = modifier
             .padding(
-                dimensionResource(id = R.dimen.padding_normal),
+                 16.dp,
             )
     ) {
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -50,7 +51,7 @@ fun GoBackTopBar(
                 IconButton(onClick = onClick, modifier = Modifier.size(24.dp)) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                        contentDescription = stringResource(id = R.string.go_back),
+                        contentDescription = text,
                         tint = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.size(24.dp)
                     )
@@ -58,7 +59,7 @@ fun GoBackTopBar(
 
 
                 Text(
-                    text = stringResource(id = R.string.go_back),
+                    text = text,
                     modifier = Modifier.padding(bottom = 2.dp),
                     color = MaterialTheme.colorScheme.onBackground,
                     fontStyle = MaterialTheme.typography.headlineMedium.fontStyle,

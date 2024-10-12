@@ -10,13 +10,11 @@ import retrofit2.http.Query
 
 interface CollectionApiService {
 
-    // Endpoint for fetching all collectionJS with pagination
     @GET("collections")
     suspend fun getAllCollections(
         @Query("page") page: Int = 0, @Query("size") size: Int = 10
     ): Response<Page<CollectionDto>>
 
-    // Endpoint for fetching collectionJ details by ID
     @GET("collections/{collectionId}")
     suspend fun getCollectionById(
         @Path("collectionId") collectionId: Long

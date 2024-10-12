@@ -1,6 +1,6 @@
 package com.example.linguaguess.domain.service.local
 
-import com.example.linguaguess.data.local.datasource.LocalJapaneseWordDataSource
+import com.example.linguaguess.data.local.repository.LocalJapaneseWordRepo
 import com.example.linguaguess.data.mappers.toJapaneseWord
 import com.example.linguaguess.domain.model.JapaneseWord
 import com.example.linguaguess.utils.Constants
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class GetLocalJapaneseWordsByChapterAndBlockUseCase @Inject constructor(
-    private val localJapaneseWordDataSource: LocalJapaneseWordDataSource,
+    private val localJapaneseWordRepo: LocalJapaneseWordRepo,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
@@ -24,7 +24,7 @@ class GetLocalJapaneseWordsByChapterAndBlockUseCase @Inject constructor(
         return flow {
             emit(NetworkResultLoading.Loading())
 
-            val result = localJapaneseWordDataSource.getJapaneseWordsByChapterIdBlockPosition(
+            val result = localJapaneseWordRepo.getJapaneseWordsByChapterIdBlockPosition(
                 chapterId,
                 blockPosition
             )

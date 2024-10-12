@@ -1,7 +1,7 @@
 package com.example.linguaguess.utils
 
 object Constants {
-    const val BASE_URL = "http://10.0.2.2:8888/api/"
+
     const val TIMEOUT: Long = 15
     const val ERROR = "Error"
 
@@ -20,10 +20,12 @@ object Constants {
     const val REGISTRATION_ERROR_MSG_EMPTY_CONFIRM_PASSWORD = "Please confirm your password"
     const val REGISTRATION_ERROR_MSG_PASSWORD_MISMATCH =
         "Please enter the same password here as above"
+    const val REGISTRATION_ERROR_MSG_FAILED = "Registration failed. Please try again."
 
     //Login UI Error Messages
     const val LOGIN_ERROR_MSG_EMPTY_EMAIL = "Please enter your email"
     const val LOGIN_ERROR_MSG_EMPTY_PASSWORD = "Please enter your password"
+    const val LOGIN_ERROR_MSG_FAILED = "Login failed. Please try again."
 
     //Quiz UI Error Messages
     const val QUIZ_WORDS_NOT_LOADED_ERROR_MSG =
@@ -76,6 +78,9 @@ object Constants {
     //Remote Japanese Word Data Source Error Messages
     const val NO_JAPANESE_WORDS_FOUND = "No Japanese words found"
 
+    //Remote Auth Data Source Error Messages
+    const val NO_USER_FOUND = "No user found"
+
     //Local Database Constants
     const val LOCAL_DATABASE_NAME = "collections.db"
 
@@ -84,5 +89,12 @@ object Constants {
     const val NO_CHAPTERS_IN_COLLECTION = "No chapters found for this collection"
     const val NO_WORDS_CHAPTERS = "Some chapters have no words"
     const val ERROR_SAVING_DATA = "Failed to save data locally"
+
+    //Data Store Constants
+    const val DATA_STORE = "data_store"
+
+    //Token Constants
+    const val ACCESSTOKEN = "access_token"
+    const val REFRESHTOKEN = "refresh_token"
 
 }

@@ -1,20 +1,20 @@
 package com.example.linguaguess.domain.service.remote
 
 import com.example.linguaguess.data.local.dao.CollectionDao
-import com.example.linguaguess.data.remote.datasource.RemoteCollectionDataSource
+import com.example.linguaguess.data.remote.repository.RemoteCollectionRepo
 import com.example.linguaguess.data.remote.model.CollectionDto
 import com.example.linguaguess.domain.model.Page
 import com.example.linguaguess.utils.NetworkResult
 import javax.inject.Inject
 
 class GetRemoteCollectionsUseCase @Inject constructor(
-    private val remoteCollectionDataSource: RemoteCollectionDataSource,
+    private val remoteCollectionRepo: RemoteCollectionRepo,
     private val collectionDao: CollectionDao,
 ) {
 
     suspend operator fun invoke(page: Int): NetworkResult<Page<CollectionDto>> {
         // Fetch collections from the data source
-        val result = remoteCollectionDataSource.getAllCollections(page)
+        val result = remoteCollectionRepo.getAllCollections(page)
 
         // If the result is successful, check if each collection exists locally
         if (result is NetworkResult.Success) {

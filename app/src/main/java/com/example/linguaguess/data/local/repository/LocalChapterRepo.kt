@@ -1,15 +1,14 @@
-package com.example.linguaguess.data.local.datasource
+package com.example.linguaguess.data.local.repository
 
 import com.example.linguaguess.data.local.dao.ChapterDao
 import com.example.linguaguess.data.local.model.ChapterEntity
 import com.example.linguaguess.utils.Constants
-import com.example.linguaguess.utils.NetworkResult
 import com.example.linguaguess.utils.NetworkResultLoading
 import javax.inject.Inject
 
 
 
-class LocalChapterDataSource @Inject constructor(
+class LocalChapterRepo @Inject constructor(
     private val chapterDao: ChapterDao
 ) {
 
@@ -35,7 +34,7 @@ class LocalChapterDataSource @Inject constructor(
             val totalWords = chapterDao.getTotalWordsByChapterId(chapterId)
             NetworkResultLoading.Success(totalWords)
         } catch (e: Exception) {
-            val message = e.message
+
             NetworkResultLoading.Error(Constants.TOTAL_WORDS_NOT_RETRIEVED)
         }
 

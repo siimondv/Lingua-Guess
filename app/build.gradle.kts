@@ -21,6 +21,17 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        //http://your-local-api-url-here\
+        buildConfigField(
+            "String",
+            "COLLECTION_BASE_URL",
+            "\"http://10.0.2.2:8888/api/\""
+        )
+        buildConfigField(
+            "String",
+            "AUTH_BASE_URL",
+            "\"http://10.0.2.2:8889/\""
+        )
     }
 
     buildTypes {
@@ -30,6 +41,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+
         }
     }
     compileOptions {
@@ -38,6 +51,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    buildFeatures {
+        buildConfig = true
     }
     buildFeatures {
         compose = true
@@ -66,7 +82,7 @@ dependencies {
     implementation("androidx.compose.animation:animation")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.material3:material3")
-    implementation ("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
 
 
@@ -79,11 +95,11 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     //material
-    implementation ("androidx.compose.material:material:1.6.8")
+    implementation("androidx.compose.material:material:1.6.8")
 
     // Paging
-    implementation ("androidx.paging:paging-runtime-ktx:3.3.0")
-    implementation ("androidx.paging:paging-compose:3.3.0")
+    implementation("androidx.paging:paging-runtime-ktx:3.3.0")
+    implementation("androidx.paging:paging-compose:3.3.0")
 
     val retrofitVersion = "2.9.0"
     //retrofit
@@ -94,25 +110,30 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-scalars:$retrofitVersion")
 
     //cuidado aqui
-    implementation ("androidx.compose.material:material-icons-extended:1.6.8")
+    implementation("androidx.compose.material:material-icons-extended:1.6.8")
 
     //Coil Image
-    implementation ("io.coil-kt:coil-compose:2.5.0")
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     //Dagger - Hilt
-    implementation ("com.google.dagger:hilt-android:2.50")
-    kapt ("com.google.dagger:hilt-android-compiler:2.50")
-    kapt ("androidx.hilt:hilt-compiler:1.1.0")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
 
     // Room
-    implementation ("androidx.room:room-ktx:2.6.1")
-    kapt ("androidx.room:room-compiler:2.6.1")
-    implementation ("androidx.room:room-paging:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-paging:2.6.1")
 
     // Lottie animations.
-    implementation ("com.airbnb.android:lottie-compose:6.4.0")
-    
+    implementation("com.airbnb.android:lottie-compose:6.4.0")
+
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+
+
 
 }

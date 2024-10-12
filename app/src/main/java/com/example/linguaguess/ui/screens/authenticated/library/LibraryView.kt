@@ -22,6 +22,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import com.example.linguaguess.domain.model.CollectionJ
 import com.example.linguaguess.ui.composables.CollectionCardIsDownloaded
@@ -42,11 +43,6 @@ fun LibraryView(
 
     val scaffoldState = rememberScaffoldState()
 
-    if (libraryState.errorState.collectionErrorState.hasError) {
-        CommonError(onRetryClicked = {
-            getAllCollections()
-        })
-    }
 
     Scaffold(
         scaffoldState = scaffoldState,

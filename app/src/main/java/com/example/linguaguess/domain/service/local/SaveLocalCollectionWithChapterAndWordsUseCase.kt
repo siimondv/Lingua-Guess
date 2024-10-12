@@ -1,6 +1,6 @@
 package com.example.linguaguess.domain.service.local
 
-import com.example.linguaguess.data.local.datasource.LocalCollectionWithChaptersAndWordsDataSource
+import com.example.linguaguess.data.local.repository.LocalCollectionWithChaptersAndWordsRepo
 import com.example.linguaguess.data.mappers.toChapterEntity
 import com.example.linguaguess.data.mappers.toCollectionEntity
 import com.example.linguaguess.data.mappers.toJapaneseWordEntity
@@ -27,7 +27,7 @@ class SaveLocalCollectionWithChapterAndWordsUseCase @Inject constructor(
     private val getRemoteCollectionUseCase: GetRemoteCollectionUseCase,
     private val getRemoteChaptersByCollectionUseCase: GetRemoteChaptersByCollectionUseCase,
     private val getRemoteJapaneseWordsByChapterIdUseCase: GetRemoteJapaneseWordsByChapterIdUseCase,
-    private val localCollectionWithChaptersAndWordsDataSource: LocalCollectionWithChaptersAndWordsDataSource,
+    private val localCollectionWithChaptersAndWordsRepo: LocalCollectionWithChaptersAndWordsRepo,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
@@ -88,7 +88,7 @@ class SaveLocalCollectionWithChapterAndWordsUseCase @Inject constructor(
             // Step 3: Save the collection with chapters and words (this is the final step)
             emit(ProgressState.Loading((++currentStep + chapters.size) / totalSteps)) // Final progress step
             val result =
-                localCollectionWithChaptersAndWordsDataSource.saveCollectionWithChaptersAndWords(
+                localCollectionWithChaptersAndWordsRepo.saveCollectionWithChaptersAndWords(
                     collectionDetailDto.toCollectionEntity(),
                     chapters.map { it.toChapterEntity() },
                     japaneseWords.map { it.toJapaneseWordEntity() }

@@ -28,6 +28,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.dp
 import com.example.linguaguess.R
 import com.example.linguaguess.ui.theme.AccentColor
 import com.example.linguaguess.ui.theme.BgColor
@@ -85,7 +86,7 @@ fun PasswordTextField(
                 Icon(
                     painter = passwordVisibilityIconAndText.first,
                     contentDescription = passwordVisibilityIconAndText.second,
-                    modifier = Modifier.size(dimensionResource(id = R.dimen.padding_large))
+                    modifier = Modifier.size(24.dp)
                 )
             }
         },

@@ -7,8 +7,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun RegisterScreen(
-    onNavigateBack : () -> Unit,
-    onNavigateToAuthenticatedRoute: () -> Unit,
+    onNavigateBack: () -> Unit,
+    onNavigateToLogin: () -> Unit,
 ) {
     val registerViewModel: RegisterViewModel = hiltViewModel()
     val uiState by registerViewModel.uiState.collectAsState()
@@ -16,12 +16,12 @@ fun RegisterScreen(
     RegisterView(
         registerState = uiState,
         onNavigateBack = onNavigateBack,
-        onNavigateToAuthenticatedRoute = onNavigateToAuthenticatedRoute,
+        onNavigateToLogin = onNavigateToLogin,
         onNameChange = registerViewModel::setName,
         onEmailChange = registerViewModel::setEmail,
         onPasswordChange = registerViewModel::setPassword,
         onConfirmPasswordChange = registerViewModel::setPasswordConfirm,
-        onRegister = {  }
+        onRegister = registerViewModel::register
     )
 
 

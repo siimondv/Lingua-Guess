@@ -14,12 +14,12 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value = ["chapterId"])] // For faster lookups
+    indices = [Index(value = ["chapterId"])]
 )
 data class ChapterEntity(
     @PrimaryKey
     val chapterId: Long,
     val chapterNumber: Int,
     val totalWords: Int,
-    val collectionId: Long // Foreign key referencing CollectionEntity
+    val collectionId: Long
 )

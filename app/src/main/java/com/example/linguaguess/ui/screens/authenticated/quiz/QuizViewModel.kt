@@ -7,15 +7,18 @@ import com.example.linguaguess.domain.model.JapaneseWord
 import com.example.linguaguess.domain.service.local.GetLocalJapaneseWordsByChapterAndBlockUseCase
 import com.example.linguaguess.domain.service.local.UpdateLocalScoreUseCase
 import com.example.linguaguess.ui.common.ErrorState
+
+import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResultLoading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-//TODO Crear clase ManageQuizProgrss para organizar el viewModel
+
 @HiltViewModel
 class QuizViewModel @Inject constructor(
     private val getLocalJapaneseWordsByChapterAndBlockUseCase: GetLocalJapaneseWordsByChapterAndBlockUseCase,
@@ -30,8 +33,21 @@ class QuizViewModel @Inject constructor(
 
     fun getWordList(chapterId: Long, blockPosition: Long) {
         viewModelScope.launch {
-            //TODO añadir errorState al viewmodel y poner catch aqui
+
             getLocalJapaneseWordsByChapterAndBlockUseCase(chapterId, blockPosition)
+                .catch(action = {
+                    _uiState.update {
+                        it.copy(
+                            errorState = it.errorState.copy(
+                                wordsErrorState = ErrorState(
+                                    hasError = true,
+                                    errorMessage = Constants.QUIZ_WORDS_NOT_LOADED_ERROR_MSG
+                                )
+                            ),
+                            isLoading = false
+                        )
+                    }
+                })
                 .collect {
                     when (it) {
                         is NetworkResultLoading.Loading -> {
@@ -45,6 +61,7 @@ class QuizViewModel @Inject constructor(
                             _uiState.value = _uiState.value.copy(
                                 totalWordCount = words.size,
                                 currentWord = words[0],
+                                errorState = _uiState.value.errorState.copy(wordsErrorState = ErrorState()),
                                 isLoading = false
                             )
 
@@ -53,7 +70,12 @@ class QuizViewModel @Inject constructor(
                         is NetworkResultLoading.Error -> {
                             _uiState.update {
                                 it.copy(
-                                    errorState = it.errorState.copy(wordsErrorState = wordsNotLoadedErrorState),
+                                    errorState = it.errorState.copy(
+                                        wordsErrorState = ErrorState(
+                                            hasError = true,
+                                            errorMessage = Constants.QUIZ_WORDS_NOT_LOADED_ERROR_MSG
+                                        )
+                                    ),
                                     isLoading = false
                                 )
                             }
@@ -86,7 +108,6 @@ class QuizViewModel @Inject constructor(
 
 
     fun nextWord() {
-        //TODO revisar si es correcto revisar lo del status aqui
         if (_uiState.value.gotItStatus == GotItStatus.NOT_PRESSED) {
             correctWords++
         }
@@ -143,6 +164,19 @@ class QuizViewModel @Inject constructor(
         }
         viewModelScope.launch {
             updateLocalScoreUseCase(collectionId, chapterId, blockPosition.toInt(), correctWords)
+                .catch(action = {
+                    _uiState.update {
+                        it.copy(
+                            errorState = it.errorState.copy(
+                                finishErrorState = ErrorState(
+                                    hasError = true,
+                                    errorMessage = Constants.QUIZ_FINISHED_FAIL_ERROR_MSG
+                                )
+                            ),
+                            isLoading = false
+                        )
+                    }
+                })
                 .collect {
                     when (it) {
                         is NetworkResultLoading.Loading -> {
@@ -154,6 +188,7 @@ class QuizViewModel @Inject constructor(
                         is NetworkResultLoading.Success -> {
                             _uiState.value = _uiState.value.copy(
                                 isFinished = true,
+                                errorState = _uiState.value.errorState.copy(finishErrorState = ErrorState()),
                                 isLoading = false
                             )
                         }
@@ -161,7 +196,12 @@ class QuizViewModel @Inject constructor(
                         is NetworkResultLoading.Error -> {
                             _uiState.update {
                                 it.copy(
-                                    errorState = it.errorState.copy(finishErrorState = quizFinishedFailErrorState),
+                                    errorState = it.errorState.copy(
+                                        finishErrorState = ErrorState(
+                                            hasError = true,
+                                            errorMessage = Constants.QUIZ_FINISHED_FAIL_ERROR_MSG
+                                        )
+                                    ),
                                     isLoading = false
                                 )
                             }

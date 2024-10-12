@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -86,13 +87,13 @@ fun BlockCardBoxNotStarted(
                 ) {
                     Text(
                         text = "${block.blockPosition}º",
-                        fontSize = 60.sp, // Adjust the size as needed
+                        fontSize = 60.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
                     Text(
                         text = stringResource(R.string.block),
-                        fontSize = 20.sp, // Adjust the size as needed
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
@@ -118,7 +119,7 @@ fun BlockCardBoxNotStarted(
 
                     Text(
                         text = stringResource(R.string.not_started),
-                        fontSize = 25.sp, // Adjust the size as needed
+                        fontSize = 25.sp,
                         fontWeight = FontWeight.W400,
                         color = Color.Black
                     )
@@ -132,7 +133,7 @@ fun BlockCardBoxNotStarted(
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
                         text = stringResource(R.string.play),
-                        fontSize = 25.sp, // Adjust the size as needed
+                        fontSize = 25.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Blue
                     )

@@ -103,7 +103,7 @@ fun CollectionCardBox(
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_normal)))
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     val imageResId = R.drawable.jp
 
@@ -254,7 +254,7 @@ fun CollectionCardIsDownloaded(
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_normal)))
+                        Spacer(modifier = Modifier.height(16.dp))
 
                         val imageResId = R.drawable.jp
 

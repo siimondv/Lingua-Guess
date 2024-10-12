@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.dp
 import com.example.linguaguess.R
 import com.example.linguaguess.ui.theme.FederalBlue
 
@@ -35,7 +36,7 @@ fun SmallClickableWithIconAndText(
             tint = FederalBlue
         )
         Text(
-            modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_small)),
+            modifier = Modifier.padding(start = 8.dp),
             text = text,
             style = MaterialTheme.typography.titleSmall,
             color = FederalBlue

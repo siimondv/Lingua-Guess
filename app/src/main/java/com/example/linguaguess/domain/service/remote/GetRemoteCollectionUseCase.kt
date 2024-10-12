@@ -1,7 +1,7 @@
 package com.example.linguaguess.domain.service.remote
 
 import com.example.linguaguess.data.local.dao.CollectionDao
-import com.example.linguaguess.data.remote.datasource.RemoteCollectionDataSource
+import com.example.linguaguess.data.remote.repository.RemoteCollectionRepo
 import com.example.linguaguess.data.remote.model.CollectionDetailDto
 import com.example.linguaguess.utils.NetworkResultLoading
 import kotlinx.coroutines.CoroutineDispatcher
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class GetRemoteCollectionUseCase @Inject constructor(
-    private val remoteCollectionDataSource: RemoteCollectionDataSource,
+    private val remoteCollectionRepo: RemoteCollectionRepo,
     private val collectionDao: CollectionDao,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
@@ -26,7 +26,7 @@ class GetRemoteCollectionUseCase @Inject constructor(
                 var i = 1
             }
             // Get the collection details from the data source
-            val result = remoteCollectionDataSource.getCollectionById(id)
+            val result = remoteCollectionRepo.getCollectionById(id)
 
             // Process the result if it is successful
             if (result is NetworkResultLoading.Success) {

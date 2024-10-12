@@ -38,7 +38,7 @@ fun TextWithRoundedBorder(
         Text(
             text = text,
             color = textColor, // Set the text color
-            style = TextStyle(fontSize = 17.sp,fontWeight = FontWeight.Bold ),
+            style = TextStyle(fontSize = 14.sp,fontWeight = FontWeight.Bold ),
             modifier = Modifier.align(Alignment.Center) // Center the text within the box
         )
     }

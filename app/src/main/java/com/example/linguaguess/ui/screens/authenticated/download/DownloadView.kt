@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
@@ -28,7 +29,7 @@ import com.example.linguaguess.ui.composables.CollectionCardBox
 import com.example.linguaguess.ui.composables.CollectionCardIsDownloaded
 import com.example.linguaguess.ui.composables.NetworkError
 
-//TODO Revisar si esta es la mejor manera de organizar la ui
+
 @Composable
 fun DownloadView(
     onNavigateToCollectionDetail: (String) -> Unit,

@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -84,13 +85,13 @@ fun ChaptersCardBox(
                 ) {
                     Text(
                         text = "${chapter.chapterNumber}º",
-                        fontSize = 60.sp, // Adjust the size as needed
+                        fontSize = 60.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
                     Text(
                         text = stringResource(R.string.chapter),
-                        fontSize = 20.sp, // Adjust the size as needed
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
@@ -115,13 +116,13 @@ fun ChaptersCardBox(
                     Spacer(modifier = Modifier.weight(.15f))
                     Text(
                         text = chapter.totalWords.toString(),
-                        fontSize = 45.sp, // Adjust the size as needed
+                        fontSize = 45.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
                     Text(
                         text = stringResource(R.string.words_chaptersDetail),
-                        fontSize = 25.sp, // Adjust the size as needed
+                        fontSize = 25.sp,
                         fontWeight = FontWeight.W400,
                         color = Color.Black
                     )
@@ -136,7 +137,7 @@ fun ChaptersCardBox(
                     val percentage = if (chapter.blockCount != 0) {
                         (chapter.completedBlockCount.toDouble() / chapter.blockCount.toDouble()) * 100
                     } else {
-                        0.0 // or any other default value you want to use in case of division by zero
+                        0.0
                     }
 
                     ProgressBarSquare(

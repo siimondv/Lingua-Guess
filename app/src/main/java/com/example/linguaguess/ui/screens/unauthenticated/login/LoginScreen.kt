@@ -15,13 +15,12 @@ fun LoginScreen(
     val loginViewModel: LoginViewModel = hiltViewModel()
     val uiState by loginViewModel.uiState.collectAsState()
 
-
     LoginView(
         loginState = uiState,
         onNavigateToRegister = onNavigateToRegister,
         onNavigateToAuthenticatedRoute = onNavigateToAuthenticatedRoute,
         onEmailChange = loginViewModel::setEmail,
         onPasswordChange = loginViewModel::setPassword,
-        onLogin = { }
+        onLogin = loginViewModel::login
     )
 }

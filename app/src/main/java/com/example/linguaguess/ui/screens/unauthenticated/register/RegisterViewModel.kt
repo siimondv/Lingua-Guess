@@ -2,17 +2,24 @@ package com.example.linguaguess.ui.screens.unauthenticated.register
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.linguaguess.domain.model.User
+import com.example.linguaguess.domain.service.remote.RegisterUseCase
 import com.example.linguaguess.ui.common.ErrorState
+import com.example.linguaguess.utils.Constants
+import com.example.linguaguess.utils.NetworkResultLoading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
+    private val registerUseCase: RegisterUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(RegisterState())
     val uiState = _uiState.asStateFlow()
@@ -90,7 +97,55 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun register(){
+    fun register() {
+        viewModelScope.launch {
+            registerUseCase(_uiState.value.user)
+                .catch(action = {
+                    _uiState.update {
+                        it.copy(
+                            errorState = it.errorState.copy(registerErrorState = ErrorState(
+                                hasError = true,
+                                errorMessage = Constants.REGISTRATION_ERROR_MSG_FAILED
+                            )),
+                            isLoading = false
+                        )
+                    }
+                })
+                .collect { result ->
+                when (result) {
+                    is NetworkResultLoading.Loading -> {
+                        _uiState.update {
+                            it.copy(
+                                isLoading = true
+                            )
+                        }
+                    }
+
+                    is NetworkResultLoading.Success -> {
+                        _uiState.update {
+                            it.copy(
+                                isSuccessful = true,
+                                errorState = it.errorState.copy(registerErrorState = ErrorState()),
+                                isLoading = false
+                            )
+                        }
+                    }
+
+                    is NetworkResultLoading.Error -> {
+                        _uiState.update {
+                            it.copy(
+                                errorState = it.errorState.copy(registerErrorState = ErrorState(
+                                    hasError = true,
+                                    errorMessage = Constants.REGISTRATION_ERROR_MSG_FAILED
+                                )),
+                                isLoading = false
+                            )
+                        }
+                    }
+                }
+
+            }
+        }
 
     }
 
@@ -100,6 +155,7 @@ class RegisterViewModel @Inject constructor(
 data class RegisterState(
     val user: User = User(),
     val confirmPassword: String = "",
+    val isLoading: Boolean = false,
     val errorState: RegistrationErrorState = RegistrationErrorState(),
     val isSuccessful: Boolean = false,
 )
@@ -110,5 +166,6 @@ data class RegistrationErrorState(
     val emailErrorState: ErrorState = ErrorState(),
     val mobileNumberErrorState: ErrorState = ErrorState(),
     val passwordErrorState: ErrorState = ErrorState(),
-    val confirmPasswordErrorState: ErrorState = ErrorState()
+    val confirmPasswordErrorState: ErrorState = ErrorState(),
+    val registerErrorState: ErrorState = ErrorState(),
 )

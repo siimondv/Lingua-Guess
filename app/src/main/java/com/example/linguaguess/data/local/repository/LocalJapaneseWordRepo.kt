@@ -1,4 +1,4 @@
-package com.example.linguaguess.data.local.datasource
+package com.example.linguaguess.data.local.repository
 
 import com.example.linguaguess.data.local.dao.JapaneseWordDao
 import com.example.linguaguess.data.local.model.JapaneseWordEntity
@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 
 
-class LocalJapaneseWordDataSource @Inject constructor(
+class LocalJapaneseWordRepo @Inject constructor(
     private val japaneseWordDao: JapaneseWordDao
 ) {
 

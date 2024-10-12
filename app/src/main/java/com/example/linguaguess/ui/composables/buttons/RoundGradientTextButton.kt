@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+
 import androidx.compose.ui.text.TextStyle
 
 import androidx.compose.ui.text.font.FontWeight
@@ -29,11 +30,17 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun RoundGradientTextButton(
-    onClick: () -> Unit, enabled: Boolean = true, text: String, color1: Color, color2: Color
+    modifier: Modifier = Modifier,
+    textSize: Float = 16f,
+    enabled: Boolean = true,
+    text: String,
+    color1: Color,
+    color2: Color,
+    onClick: () -> Unit
 ) {
     val contentAlpha = if (enabled) LocalContentAlpha.current else ContentAlpha.disabled
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(100.dp)
             .clickable(onClick = onClick, enabled = enabled)
             .border(
@@ -57,7 +64,7 @@ fun RoundGradientTextButton(
         Text(
             text = text,
             color = if (enabled) Color.White else Color.Gray,
-            style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            style = TextStyle(fontSize = textSize.sp, fontWeight = FontWeight.Bold)
         )
     }
 }

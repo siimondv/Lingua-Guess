@@ -13,3 +13,8 @@ val passwordEmptyErrorState = ErrorState(
     hasError = true,
     errorMessage = Constants.LOGIN_ERROR_MSG_EMPTY_PASSWORD
 )
+
+val loginFailedErrorState = ErrorState(
+    hasError = true,
+    errorMessage = Constants.LOGIN_ERROR_MSG_FAILED
+)

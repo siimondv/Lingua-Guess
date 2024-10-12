@@ -1,45 +1,39 @@
 package com.example.linguaguess.domain.service.local.internal
 
-import com.example.linguaguess.data.local.datasource.LocalChapterDataSource
-import com.example.linguaguess.data.local.datasource.LocalScoreDataSource
 import com.example.linguaguess.data.local.model.ScoreEntity
+import com.example.linguaguess.data.local.repository.LocalChapterRepo
+import com.example.linguaguess.data.local.repository.LocalScoreRepo
 import com.example.linguaguess.domain.model.Block
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResult
 import com.example.linguaguess.utils.NetworkResultLoading
 import javax.inject.Inject
 
-
-class UpdateLocalBLocksByCollectionChapterUseCase @Inject constructor(
-    private val localChapterDataSource: LocalChapterDataSource,
-    private val localScoreDataSource: LocalScoreDataSource,
+class GetAndUpdateLocalBlocksByCollectionChapter @Inject constructor(
+    private val localChapterRepo: LocalChapterRepo,
+    private val localScoreRepo: LocalScoreRepo,
 ) {
-
-    //TODO mirar si este usecase se debe dividir en usecases especficos y desde uno mayor llarmar a los otros
     suspend operator fun invoke(
         collectionId: Long,
         chapterId: Long,
-    ): NetworkResult<Unit> {
-        val result = localChapterDataSource.getTotalWordsByChapterId(chapterId)
+    ): NetworkResult<List<Block>> {
+
+        val result = localChapterRepo.getTotalWordsByChapterId(chapterId)
 
         if (result is NetworkResultLoading.Success) {
             val blocks = result.data?.let { createBlocks(it) } ?: emptyList()
 
-            blocks.map { block ->
-                val scoreExists =
-                    checkIfScoreExists(collectionId, chapterId, block.blockPosition)
+            val updatedBlocks = blocks.map { block ->
+                val scoreExists = checkIfScoreExists(collectionId, chapterId, block.blockPosition)
 
                 //Here it enters if the score exists and checks wether the right answers are initialized
                 if (scoreExists) {
                     val scoreEntity = getScoreEntityIfRightAnswersIsInitialized(
-                        collectionId,
-                        chapterId,
-                        block.blockPosition
+                        collectionId, chapterId, block.blockPosition
                     )
                     if (scoreEntity != null) {
                         block.copy(
-                            isStarted = true,
-                            correctWords = scoreEntity.rightAnswers ?: 0
+                            isStarted = true, correctWords = scoreEntity.rightAnswers ?: 0
                         )
                     } else {
                         block
@@ -47,7 +41,7 @@ class UpdateLocalBLocksByCollectionChapterUseCase @Inject constructor(
                 }
                 //Here it enters if the score does not exist (first time entering the chapter or if the chapter has added new words)
                 else {
-                    localScoreDataSource.insertScore(
+                    localScoreRepo.insertScore(
                         ScoreEntity(
                             collectionId = collectionId,
                             chapterId = chapterId,
@@ -61,7 +55,7 @@ class UpdateLocalBLocksByCollectionChapterUseCase @Inject constructor(
             }
 
 
-            return NetworkResult.Success(Unit)
+            return NetworkResult.Success(updatedBlocks)
 
 
         } else {
@@ -69,7 +63,6 @@ class UpdateLocalBLocksByCollectionChapterUseCase @Inject constructor(
         }
 
     }
-
 
     private fun createBlocks(totalWord: Int): List<Block> {
         val blocks = mutableListOf<Block>()
@@ -88,16 +81,11 @@ class UpdateLocalBLocksByCollectionChapterUseCase @Inject constructor(
         return blocks
     }
 
-    //TODO Estos metodos estan exactamente iguales que en el usecase de GetUpdateLocalBlocksByCollectionChapterUseCase.kt, asi quew lo mejor probablemente sea crear usecases de estos para no reutilizarlso
     private suspend fun checkIfScoreExists(
-        collectionId: Long,
-        chapterId: Long,
-        blockPosition: Int
+        collectionId: Long, chapterId: Long, blockPosition: Int
     ): Boolean {
-        val result = localScoreDataSource.getScoreByCollectionChapterAndBlock(
-            collectionId,
-            chapterId,
-            blockPosition
+        val result = localScoreRepo.getScoreByCollectionChapterAndBlock(
+            collectionId, chapterId, blockPosition
         )
 
         if (result is NetworkResult.Success) {
@@ -108,14 +96,10 @@ class UpdateLocalBLocksByCollectionChapterUseCase @Inject constructor(
     }
 
     private suspend fun getScoreEntityIfRightAnswersIsInitialized(
-        collectionId: Long,
-        chapterId: Long,
-        blockPosition: Int
+        collectionId: Long, chapterId: Long, blockPosition: Int
     ): ScoreEntity? {
-        val result = localScoreDataSource.getScoreByCollectionChapterAndBlock(
-            collectionId,
-            chapterId,
-            blockPosition
+        val result = localScoreRepo.getScoreByCollectionChapterAndBlock(
+            collectionId, chapterId, blockPosition
         )
 
         if (result is NetworkResult.Success) {

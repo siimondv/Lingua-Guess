@@ -45,8 +45,6 @@ import com.example.linguaguess.ui.composables.buttons.RoundGradientTextButton
 import com.example.linguaguess.ui.composables.buttons.RoundedButton
 import com.example.linguaguess.ui.composables.textcompoosables.RoundedFractionLabel
 import com.example.linguaguess.ui.composables.textcompoosables.WordText
-import com.example.linguaguess.ui.screens.authenticated.chaptersdetail.ChapterDetailContent
-import com.example.linguaguess.ui.screens.authenticated.download.collectionNotLoadedErrorState
 import com.example.linguaguess.ui.theme.RgDarkBlue
 import com.example.linguaguess.ui.theme.RgDarkGreen
 import com.example.linguaguess.ui.theme.RgDarkRed
@@ -80,19 +78,16 @@ fun QuizView(
 
     val scaffoldState = rememberScaffoldState()
 
-    val errorMessage = when {
-        quizState.errorState.finishErrorState.hasError -> quizState.errorState.finishErrorState.errorMessage
-        else -> null
-    }
-
-    errorMessage?.let {
-        LaunchedEffect(it) {
+    val errorId = quizState.errorState.finishErrorState.errorId
+    if(quizState.errorState.finishErrorState.hasError) {
+        LaunchedEffect(errorId) {
             scaffoldState.snackbarHostState.showSnackbar(
-                message = it,
+                message = quizState.errorState.finishErrorState.errorMessage,
                 duration = SnackbarDuration.Short
             )
         }
     }
+
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -166,9 +161,9 @@ fun QuizContent(
     Column(
         modifier = Modifier
             .padding(
-                start = dimensionResource(id = R.dimen.padding_normal),
-                end = dimensionResource(id = R.dimen.padding_normal),
-                bottom = dimensionResource(id = R.dimen.padding_normal)
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 16.dp
             )
 
     ) {
@@ -215,7 +210,7 @@ fun QuizContent(
             Spacer(modifier = Modifier.weight(1f))
 
 
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_normal)))
+            Spacer(modifier = Modifier.height(16.dp))
 
             RoundedButton(
                 text = stringResource(R.string.show_answer),

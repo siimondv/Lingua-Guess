@@ -6,10 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.linguaguess.domain.model.CollectionJ
 import com.example.linguaguess.domain.service.local.GetLocalCollectionsUseCase
 import com.example.linguaguess.ui.common.ErrorState
+import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResultLoading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,8 +31,20 @@ class LibraryViewModel @Inject constructor(
 
     fun getAllCollections() {
         viewModelScope.launch {
-            //TODO añadir errorState al viewmodel y poner catch aqui
             getLocalCollectionsUseCase()
+                .catch(action = {
+                    _uiState.update {
+                        it.copy(
+                            errorState = it.errorState.copy(
+                                collectionErrorState = ErrorState(
+                                    hasError = true,
+                                    errorMessage = Constants.LIBRARY_COLLECTIONS_NOT_LOADED_ERROR_MSG
+                                )
+                            ),
+                            isLoading = false
+                        )
+                    }
+                })
                 .collect { networkResult ->
                     when (networkResult) {
                         is NetworkResultLoading.Loading -> {
@@ -44,6 +58,9 @@ class LibraryViewModel @Inject constructor(
                             _uiState.update {
                                 it.copy(
                                     collectionJS = networkResult.data ?: emptyList(),
+                                    errorState = it.errorState.copy(
+                                        collectionErrorState = ErrorState()
+                                    ),
                                     isLoading = false
                                 )
                             }
@@ -52,7 +69,12 @@ class LibraryViewModel @Inject constructor(
                         is NetworkResultLoading.Error -> {
                             _uiState.update {
                                 it.copy(
-                                    errorState = it.errorState.copy(collectionErrorState = collectionNotLoadedErrorState),
+                                    errorState = it.errorState.copy(
+                                        collectionErrorState = ErrorState(
+                                            hasError = true,
+                                            errorMessage = Constants.LIBRARY_COLLECTIONS_NOT_LOADED_ERROR_MSG
+                                        )
+                                    ),
                                     isLoading = false
                                 )
                             }

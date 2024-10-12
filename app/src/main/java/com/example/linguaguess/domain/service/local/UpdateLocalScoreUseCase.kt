@@ -1,6 +1,6 @@
 package com.example.linguaguess.domain.service.local
 
-import com.example.linguaguess.data.local.datasource.LocalScoreDataSource
+import com.example.linguaguess.data.local.repository.LocalScoreRepo
 import com.example.linguaguess.utils.NetworkResult
 import com.example.linguaguess.utils.NetworkResultLoading
 import kotlinx.coroutines.CoroutineDispatcher
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class UpdateLocalScoreUseCase @Inject constructor(
-    private val localScoreDataSource: LocalScoreDataSource,
+    private val localScoreRepo: LocalScoreRepo,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
@@ -26,7 +26,7 @@ class UpdateLocalScoreUseCase @Inject constructor(
         return flow {
             emit(NetworkResultLoading.Loading())
 
-            val result = localScoreDataSource.getScoreByCollectionChapterAndBlock(
+            val result = localScoreRepo.getScoreByCollectionChapterAndBlock(
                 collectionId,
                 chapterId,
                 blockPosition
@@ -36,7 +36,7 @@ class UpdateLocalScoreUseCase @Inject constructor(
                 result.data?.let {
                     if (it.rightAnswers != null && it.rightAnswers < rightAnswers) {
                         emit(
-                            localScoreDataSource.updateScore(
+                            localScoreRepo.updateScore(
                                 collectionId,
                                 chapterId,
                                 blockPosition,
@@ -46,7 +46,7 @@ class UpdateLocalScoreUseCase @Inject constructor(
                     } else if (it.rightAnswers == null) {
 
                         emit(
-                            localScoreDataSource.updateScore(
+                            localScoreRepo.updateScore(
                                 collectionId,
                                 chapterId,
                                 blockPosition,

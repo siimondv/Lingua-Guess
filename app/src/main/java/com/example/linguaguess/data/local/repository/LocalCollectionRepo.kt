@@ -1,4 +1,4 @@
-package com.example.linguaguess.data.local.datasource
+package com.example.linguaguess.data.local.repository
 
 import com.example.linguaguess.data.local.dao.CollectionDao
 import com.example.linguaguess.data.local.model.CollectionEntity
@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 
 
-class LocalCollectionDataSource @Inject constructor(
+class LocalCollectionRepo @Inject constructor(
     private val collectionDao: CollectionDao
 ) {
     suspend fun getAllCollections(): NetworkResultLoading<List<CollectionEntity>> {

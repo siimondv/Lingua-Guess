@@ -9,6 +9,7 @@ import com.example.linguaguess.domain.service.remote.GetRemoteCollectionUseCase
 import com.example.linguaguess.domain.service.local.SaveLocalCollectionWithChapterAndWordsUseCase
 import com.example.linguaguess.ui.common.ErrorState
 import com.example.linguaguess.ui.common.SuccessState
+import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResultLoading
 import com.example.linguaguess.utils.ProgressState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,14 +35,25 @@ class CollectionDetailViewModel @Inject constructor(
             getRemoteCollectionUseCase(id)
                 .catch(action = {
                     _uiState.update {
-                        it.copy(errorState = it.errorState.copy(collectionErrorState = collectionDetailErrorState))
+                        it.copy(
+                            errorState = it.errorState.copy(
+                                collectionErrorState = ErrorState(
+                                    hasError = true,
+                                    errorMessage = Constants.COLLECTION_DETAIL_ERROR_MSG_COMMON
+                                )
+                            ),
+                            isLoading = false
+                        )
                     }
                 }).collect { result ->
                     when (result) {
                         is NetworkResultLoading.Error -> _uiState.update {
                             it.copy(
                                 errorState = it.errorState.copy(
-                                    collectionErrorState = collectionDetailErrorState
+                                    collectionErrorState = ErrorState(
+                                        hasError = true,
+                                        errorMessage = Constants.COLLECTION_DETAIL_ERROR_MSG_COMMON
+                                    )
                                 ),
                                 isLoading = false
                             )
@@ -57,6 +69,9 @@ class CollectionDetailViewModel @Inject constructor(
                             it.copy(
                                 collectionJ = result.data?.toCollectionJ() ?: CollectionJ(),
                                 isLoading = false,
+                                errorState = it.errorState.copy(
+                                    collectionErrorState = ErrorState()
+                                )
                             )
                         }
                     }
@@ -67,8 +82,20 @@ class CollectionDetailViewModel @Inject constructor(
 
     fun download() {
         viewModelScope.launch {
-            //TODO añadir errorState al viewmodel y poner catch aqui
             saveLocalCollectionWithChapterAndWordsUseCase(_uiState.value.collectionJ.collectionId)
+                .catch(action = {
+                    _uiState.update {
+                        it.copy(
+                            errorState = it.errorState.copy(
+                                downloadState = ErrorState(
+                                    hasError = true,
+                                    errorMessage = Constants.COLLECTION_DOWNLOAD_ERROR_MSG
+                                )
+                            ),
+                            showProgressBar = false,
+                        )
+                    }
+                })
                 .collect { progressState ->
                     _uiState.update {
                         it.copy(
@@ -90,22 +117,28 @@ class CollectionDetailViewModel @Inject constructor(
                         is ProgressState.Failure -> {
                             _uiState.update {
                                 it.copy(
-                                    errorState = it.errorState.copy(downloadState = downloadErrorState),
+                                    errorState = it.errorState.copy(
+                                        downloadState = ErrorState(
+                                            hasError = true,
+                                            errorMessage = Constants.COLLECTION_DOWNLOAD_ERROR_MSG
+                                        )
+                                    ),
                                     showProgressBar = false,
-
-                                    )
+                                )
                             }
                         }
 
                         ProgressState.Success -> {
                             _uiState.update {
                                 it.copy(
-                                    successState = it.successState.copy(
-                                        downloadState = downloadSuccessState
-                                    ),
                                     showProgressBar = false,
                                     collectionJ = it.collectionJ.copy(
                                         isDownloaded = true
+                                    ),
+                                    errorState = it.errorState.copy(
+                                        downloadState = ErrorState(
+                                            hasError = false
+                                        )
                                     )
                                 )
                             }
@@ -128,7 +161,6 @@ data class CollectionDetailState(
     val showProgressBar: Boolean = false,
     val progressScore: Float = -1f,
     val errorState: CollectionDetailErrorState = CollectionDetailErrorState(),
-    val successState: CollectionDetailSuccessState = CollectionDetailSuccessState()
 )
 
 @Immutable

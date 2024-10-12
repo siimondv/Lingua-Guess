@@ -1,4 +1,4 @@
-package com.example.linguaguess.data.remote.datasource
+package com.example.linguaguess.data.remote.repository
 
 import com.example.linguaguess.data.remote.apis.CollectionApiService
 import com.example.linguaguess.data.remote.model.CollectionDetailDto
@@ -10,7 +10,7 @@ import com.example.linguaguess.utils.NetworkResultLoading
 import javax.inject.Inject
 
 
-class RemoteCollectionDataSource @Inject constructor(
+class RemoteCollectionRepo @Inject constructor(
     private val collectionApiService: CollectionApiService
 ) {
 

@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -56,7 +57,7 @@ fun CommonError(errorMessage: String? = null, onRetryClicked: () -> Unit) {
         LottieAnimation(
             composition = compositionResult.value,
             progress = { progressAnimation },
-            modifier = Modifier.size(280.dp),
+            modifier = Modifier.size(200.dp),
             enableMergePaths = true
         )
 

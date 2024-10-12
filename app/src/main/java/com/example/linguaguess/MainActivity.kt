@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
         }*/
         setContent {
             LinguaGuessTheme {
-                MainScreen(startDestination = NavigationRoutes.Authenticated.NavigationRoute.route)
+                MainScreen(startDestination = NavigationRoutes.Unauthenticated.NavigationRoute.route)
             }
         }
     }

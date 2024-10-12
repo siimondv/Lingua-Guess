@@ -33,3 +33,8 @@ val passwordMismatchErrorState = ErrorState(
     hasError = true,
     errorMessage = Constants.REGISTRATION_ERROR_MSG_PASSWORD_MISMATCH
 )
+
+val registerFailedErrorState = ErrorState(
+    hasError = true,
+    errorMessage = Constants.REGISTRATION_ERROR_MSG_FAILED
+)

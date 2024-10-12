@@ -30,7 +30,6 @@ interface ScoreDao {
         totalAnswers: Int
     )
 
-    //TODO ver que hace con estos metodos si hay que renombrarlos
     @Query("SELECT * FROM ScoreEntity WHERE collectionId = :collectionId AND chapterId = :chapterId AND blockPosition = :blockPosition")
     suspend fun getScoreByCollectionChapterAndBlock(
         collectionId: Long,

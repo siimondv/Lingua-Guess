@@ -1,4 +1,4 @@
-package com.example.linguaguess.data.remote.datasource
+package com.example.linguaguess.data.remote.repository
 
 import com.example.linguaguess.data.remote.apis.ChapterApiService
 import com.example.linguaguess.data.remote.model.ChapterDto
@@ -8,7 +8,7 @@ import com.example.linguaguess.utils.NetworkResult
 import javax.inject.Inject
 
 
-class RemoteChapterDataSource @Inject constructor(
+class RemoteChapterRepo @Inject constructor(
     private val chapterApiService: ChapterApiService
 ) {
 

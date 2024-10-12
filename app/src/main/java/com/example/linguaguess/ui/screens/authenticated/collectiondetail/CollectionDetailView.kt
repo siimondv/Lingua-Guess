@@ -72,15 +72,12 @@ fun CollectionDetailView(
 
     val scaffoldState = rememberScaffoldState()
 
-    val errorMessage = when {
-        collectionDetailState.errorState.downloadState.hasError -> collectionDetailState.errorState.downloadState.errorMessage
-        else -> null
-    }
+    val errorId = collectionDetailState.errorState.downloadState.errorId
 
-    errorMessage?.let {
-        LaunchedEffect(it) {
+    if(collectionDetailState.errorState.downloadState.hasError) {
+        LaunchedEffect(errorId) {
             scaffoldState.snackbarHostState.showSnackbar(
-                message = it,
+                message = collectionDetailState.errorState.downloadState.errorMessage,
                 duration = SnackbarDuration.Short
             )
         }
@@ -133,9 +130,9 @@ fun CollectionDetailContent(
 ) {
     Column(
         modifier = Modifier.padding(
-            start = dimensionResource(id = R.dimen.padding_normal),
-            end = dimensionResource(id = R.dimen.padding_normal),
-            bottom = dimensionResource(id = R.dimen.padding_normal)
+            start = 16.dp,
+            end = 16.dp,
+            bottom = 16.dp
         )
     ) {
         ComponentDetailBox(
@@ -180,7 +177,7 @@ fun CollectionDetailContent(
         }
 
 
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_normal)))
+        Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = stringResource(R.string.description),
             modifier = Modifier.padding(start = 12.dp, end = 8.dp),
