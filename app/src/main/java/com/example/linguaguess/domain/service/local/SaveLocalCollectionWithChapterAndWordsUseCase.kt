@@ -1,6 +1,7 @@
 package com.example.linguaguess.domain.service.local
 
-import com.example.linguaguess.data.local.repository.LocalCollectionWithChaptersAndWordsRepo
+import com.example.linguaguess.data.local.repository.implementations.LocalCollectionWithChaptersAndWordsRepoImp
+import com.example.linguaguess.data.local.repository.interfaces.LocalCollectionWithChaptersAndWordsRepo
 import com.example.linguaguess.data.mappers.toChapterEntity
 import com.example.linguaguess.data.mappers.toCollectionEntity
 import com.example.linguaguess.data.mappers.toJapaneseWordEntity
@@ -38,8 +39,8 @@ class SaveLocalCollectionWithChapterAndWordsUseCase @Inject constructor(
             var chapters: List<ChapterDto> = emptyList()
             var japaneseWords: List<JapaneseWordDto> = emptyList()
 
-            // Step 1: Load collection details (this is 1 step)
-            emit(ProgressState.Loading(++currentStep / 1f)) // Emit progress for the first step
+
+            emit(ProgressState.Loading(++currentStep / 1f))
             val collectionDetailDto: CollectionDetailDto? = getCollectionById(collectionId)
 
             if (collectionDetailDto == null) {

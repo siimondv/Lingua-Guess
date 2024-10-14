@@ -1,6 +1,6 @@
 package com.example.linguaguess.domain.service.local
 
-import com.example.linguaguess.data.local.repository.LocalCollectionRepo
+import com.example.linguaguess.data.local.repository.interfaces.LocalCollectionRepo
 import com.example.linguaguess.data.mappers.toCollectionJ
 import com.example.linguaguess.domain.model.CollectionJ
 import com.example.linguaguess.utils.Constants

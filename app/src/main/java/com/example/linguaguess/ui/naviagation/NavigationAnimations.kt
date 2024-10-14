@@ -9,14 +9,12 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 
-// Duration of the navigation animation
+
 private const val NAVIGATION_ANIM_DURATION = 360
 
 private const val BOTTOM_NAV_ANIM_DURATION = 400
 
-/**
- * Enter transition for the navigation animation
- */
+
 fun enterTransition() = slideInHorizontally(
     initialOffsetX = { NAVIGATION_ANIM_DURATION },
     animationSpec = tween(
@@ -31,9 +29,7 @@ fun enterTransition() = slideInHorizontally(
     )
 )
 
-/**
- * Exit transition for the navigation animation
- */
+
 fun exitTransition() = slideOutHorizontally(
     targetOffsetX = { -NAVIGATION_ANIM_DURATION },
     animationSpec = tween(
@@ -48,9 +44,7 @@ fun exitTransition() = slideOutHorizontally(
     )
 )
 
-/**
- * Enter transition for the pop navigation animation
- */
+
 fun popEnterTransition() = slideInHorizontally(
     initialOffsetX = { -NAVIGATION_ANIM_DURATION },
     animationSpec = tween(
@@ -65,9 +59,7 @@ fun popEnterTransition() = slideInHorizontally(
     )
 )
 
-/**
- * Exit transition for the pop navigation animation
- */
+
 fun popExitTransition() = slideOutHorizontally(
     targetOffsetX = { NAVIGATION_ANIM_DURATION },
     animationSpec = tween(

@@ -5,6 +5,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -32,20 +33,29 @@ fun UsualTextField(
     imeAction: ImeAction = ImeAction.Next,
 
     ) {
+    /*
 
+            focusedBorderColor = AccentColor,
+            focusedLabelColor = AccentColor,
+            cursorColor = Color.Black,
+            containerColor = BgColor,
+            focusedLeadingIconColor = AccentColor,
+     */
     OutlinedTextField(
         label = {
             Text(text = label)
         },
         value = value,
         onValueChange = onValueChange,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
+        colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = AccentColor,
             focusedLabelColor = AccentColor,
             cursorColor = Color.Black,
-            containerColor = BgColor,
+            focusedContainerColor = BgColor,
+            unfocusedContainerColor = BgColor,
             focusedLeadingIconColor = AccentColor,
         ),
+
         modifier = modifier,
         shape = MaterialTheme.shapes.medium,
         leadingIcon = {

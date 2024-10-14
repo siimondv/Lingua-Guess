@@ -17,18 +17,18 @@ import com.example.linguaguess.data.local.model.ScoreEntity
     version = 1
 )
 abstract class CollectionDatabase : RoomDatabase() {
-    // DAO for CollectionEntity
+
     abstract val collectionDao: CollectionDao
 
-    // DAO for ChapterEntity
+
     abstract val chapterDao: ChapterDao
 
-    // DAO for JapaneseWordEntity
+
     abstract val japaneseWordDao: JapaneseWordDao
 
-    // DAO for CollectionEntity, ChapterEntity, and JapaneseWordEntity
+
     abstract val collectionWithChaptersAndWordsDao: CollectionWithChaptersAndWordsDao
 
-    // DAO for ScoreEntity
+
     abstract val scoreDao: ScoreDao
 }

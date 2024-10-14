@@ -8,11 +8,11 @@ import com.example.linguaguess.data.local.model.ScoreEntity
 
 @Dao
 interface ScoreDao {
-    // Insert a new score entity (add method)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertScore(score: ScoreEntity)
 
-    // Update rightAnswers for a specific score
+
     @Query("UPDATE ScoreEntity SET rightAnswers = :rightAnswers WHERE collectionId = :collectionId AND chapterId = :chapterId AND blockPosition = :blockPosition")
     suspend fun updateRightAnswers(
         collectionId: Long,
@@ -21,7 +21,7 @@ interface ScoreDao {
         rightAnswers: Int
     )
 
-    // Update totalAnswers for a specific score identified by collectionId, chapterId, and blockPosition
+
     @Query("UPDATE ScoreEntity SET totalAnswers = :totalAnswers WHERE collectionId = :collectionId AND chapterId = :chapterId AND blockPosition = :blockPosition")
     suspend fun updateTotalAnswers(
         collectionId: Long,

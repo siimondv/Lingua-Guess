@@ -1,6 +1,7 @@
 package com.example.linguaguess.domain.service.local
 
-import com.example.linguaguess.data.local.repository.LocalJapaneseWordRepo
+import com.example.linguaguess.data.local.repository.implementations.LocalJapaneseWordRepoImp
+import com.example.linguaguess.data.local.repository.interfaces.LocalJapaneseWordRepo
 import com.example.linguaguess.data.mappers.toJapaneseWord
 import com.example.linguaguess.domain.model.JapaneseWord
 import com.example.linguaguess.utils.Constants

@@ -159,7 +159,7 @@ fun LoginContent(
             color2 = MyBlue,
             onClick = onLogin
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(24.dp))
         AccountQueryComponent(
             text = stringResource(R.string.no_account_question),
             textClickable = stringResource(R.string.register_LoginView),

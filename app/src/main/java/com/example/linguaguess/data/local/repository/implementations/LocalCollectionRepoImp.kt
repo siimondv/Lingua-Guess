@@ -1,17 +1,16 @@
-package com.example.linguaguess.data.local.repository
+package com.example.linguaguess.data.local.repository.implementations
 
 import com.example.linguaguess.data.local.dao.CollectionDao
 import com.example.linguaguess.data.local.model.CollectionEntity
+import com.example.linguaguess.data.local.repository.interfaces.LocalCollectionRepo
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResultLoading
-import javax.inject.Inject
 
 
-
-class LocalCollectionRepo @Inject constructor(
+class LocalCollectionRepoImp(
     private val collectionDao: CollectionDao
-) {
-    suspend fun getAllCollections(): NetworkResultLoading<List<CollectionEntity>> {
+) : LocalCollectionRepo {
+    override suspend fun getAllCollections(): NetworkResultLoading<List<CollectionEntity>> {
         return try {
             val collections = collectionDao.getAll()
             if (collections.isEmpty()) {
@@ -25,3 +24,4 @@ class LocalCollectionRepo @Inject constructor(
 
     }
 }
+

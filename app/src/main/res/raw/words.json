@@ -1,0 +1,494 @@
+{
+  "words": [
+    {
+      "wordId": 1,
+      "originalWord": "Hello",
+      "kanjiWord": "こんにちは",
+      "hiraganaKatakanaWord": "こんにちは",
+      "chapterId": 1
+    },
+    {
+      "wordId": 2,
+      "originalWord": "Goodbye",
+      "kanjiWord": "さようなら",
+      "hiraganaKatakanaWord": "さようなら",
+      "chapterId": 1
+    },
+    {
+      "wordId": 3,
+      "originalWord": "Yes",
+      "kanjiWord": "はい",
+      "hiraganaKatakanaWord": "はい",
+      "chapterId": 1
+    },
+    {
+      "wordId": 4,
+      "originalWord": "No",
+      "kanjiWord": "いいえ",
+      "hiraganaKatakanaWord": "いいえ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 5,
+      "originalWord": "Thank you",
+      "kanjiWord": "ありがとう",
+      "hiraganaKatakanaWord": "ありがとう",
+      "chapterId": 1
+    },
+    {
+      "wordId": 6,
+      "originalWord": "Excuse me",
+      "kanjiWord": "すみません",
+      "hiraganaKatakanaWord": "すみません",
+      "chapterId": 1
+    },
+    {
+      "wordId": 7,
+      "originalWord": "I'm sorry",
+      "kanjiWord": "ごめんなさい",
+      "hiraganaKatakanaWord": "ごめんなさい",
+      "chapterId": 1
+    },
+    {
+      "wordId": 8,
+      "originalWord": "Please",
+      "kanjiWord": "お願いします",
+      "hiraganaKatakanaWord": "おねがいします",
+      "chapterId": 1
+    },
+    {
+      "wordId": 9,
+      "originalWord": "Good morning",
+      "kanjiWord": "おはようございます",
+      "hiraganaKatakanaWord": "おはようございます",
+      "chapterId": 1
+    },
+    {
+      "wordId": 10,
+      "originalWord": "Good evening",
+      "kanjiWord": "こんばんは",
+      "hiraganaKatakanaWord": "こんばんは",
+      "chapterId": 1
+    },
+    {
+      "wordId": 11,
+      "originalWord": "Good night",
+      "kanjiWord": "おやすみなさい",
+      "hiraganaKatakanaWord": "おやすみなさい",
+      "chapterId": 1
+    },
+    {
+      "wordId": 12,
+      "originalWord": "How are you?",
+      "kanjiWord": "お元気ですか",
+      "hiraganaKatakanaWord": "おげんきですか",
+      "chapterId": 1
+    },
+    {
+      "wordId": 13,
+      "originalWord": "I'm fine",
+      "kanjiWord": "元気です",
+      "hiraganaKatakanaWord": "げんきです",
+      "chapterId": 1
+    },
+    {
+      "wordId": 14,
+      "originalWord": "What's your name?",
+      "kanjiWord": "お名前は何ですか",
+      "hiraganaKatakanaWord": "おなまえはなんですか",
+      "chapterId": 1
+    },
+    {
+      "wordId": 15,
+      "originalWord": "My name is...",
+      "kanjiWord": "私の名前は",
+      "hiraganaKatakanaWord": "わたしのなまえは",
+      "chapterId": 1
+    },
+    {
+      "wordId": 16,
+      "originalWord": "Nice to meet you",
+      "kanjiWord": "はじめまして",
+      "hiraganaKatakanaWord": "はじめまして",
+      "chapterId": 1
+    },
+    {
+      "wordId": 17,
+      "originalWord": "Where are you from?",
+      "kanjiWord": "どこから来ましたか",
+      "hiraganaKatakanaWord": "どこからきましたか",
+      "chapterId": 1
+    },
+    {
+      "wordId": 18,
+      "originalWord": "I'm from...",
+      "kanjiWord": "私は",
+      "hiraganaKatakanaWord": "わたしは",
+      "chapterId": 1
+    },
+    {
+      "wordId": 19,
+      "originalWord": "How old are you?",
+      "kanjiWord": "何歳ですか",
+      "hiraganaKatakanaWord": "なんさいですか",
+      "chapterId": 1
+    },
+    {
+      "wordId": 20,
+      "originalWord": "I'm...years old",
+      "kanjiWord": "私は",
+      "hiraganaKatakanaWord": "わたしは",
+      "chapterId": 1
+    },
+    {
+      "wordId": 21,
+      "originalWord": "What do you do?",
+      "kanjiWord": "お仕事は何ですか",
+      "hiraganaKatakanaWord": "おしごとはなんですか",
+      "chapterId": 1
+    },
+    {
+      "wordId": 22,
+      "originalWord": "I'm a...",
+      "kanjiWord": "私は",
+      "hiraganaKatakanaWord": "わたしは",
+      "chapterId": 1
+    },
+    {
+      "wordId": 23,
+      "originalWord": "How do you do?",
+      "kanjiWord": "どうぞよろしく",
+      "hiraganaKatakanaWord": "どうぞよろしく",
+      "chapterId": 1
+    },
+    {
+      "wordId": 24,
+      "originalWord": "I'm fine, thank you",
+      "kanjiWord": "元気です、ありがとう",
+      "hiraganaKatakanaWord": "げんきです、ありがとう",
+      "chapterId": 1
+    },
+    {
+      "wordId": 25,
+      "originalWord": "This is...",
+      "kanjiWord": "これは",
+      "hiraganaKatakanaWord": "これは",
+      "chapterId": 1
+    },
+    {
+      "wordId": 26,
+      "originalWord": "That is...",
+      "kanjiWord": "それは",
+      "hiraganaKatakanaWord": "それは",
+      "chapterId": 1
+    },
+    {
+      "wordId": 27,
+      "originalWord": "How much is this?",
+      "kanjiWord": "これはいくらですか",
+      "hiraganaKatakanaWord": "これはいくらですか",
+      "chapterId": 1
+    },
+    {
+      "wordId": 28,
+      "originalWord": "Where is the restroom?",
+      "kanjiWord": "トイレはどこですか",
+      "hiraganaKatakanaWord": "トイレはどこですか",
+      "chapterId": 1
+    },
+    {
+      "wordId": 29,
+      "originalWord": "I don't understand",
+      "kanjiWord": "わかりません",
+      "hiraganaKatakanaWord": "わかりません",
+      "chapterId": 1
+    },
+    {
+      "wordId": 30,
+      "originalWord": "Can you speak English?",
+      "kanjiWord": "英語が話せますか",
+      "hiraganaKatakanaWord": "えいごがはなせますか",
+      "chapterId": 1
+    },
+    {
+      "wordId": 31,
+      "originalWord": "I can speak a little Japanese",
+      "kanjiWord": "少し日本語が話せます",
+      "hiraganaKatakanaWord": "すこしにほんごがはなせます",
+      "chapterId": 1
+    },
+    {
+      "wordId": 32,
+      "originalWord": "Please speak slowly",
+      "kanjiWord": "ゆっくり話してください",
+      "hiraganaKatakanaWord": "ゆっくりはなしてください",
+      "chapterId": 1
+    },
+    {
+      "wordId": 33,
+      "originalWord": "Please write it down",
+      "kanjiWord": "書いてください",
+      "hiraganaKatakanaWord": "かいてください",
+      "chapterId": 1
+    },
+    {
+      "wordId": 34,
+      "originalWord": "Please repeat",
+      "kanjiWord": "もう一度お願いします",
+      "hiraganaKatakanaWord": "もういちどおねがいします",
+      "chapterId": 1
+    },
+    {
+      "wordId": 35,
+      "originalWord": "What time is it?",
+      "kanjiWord": "今何時ですか",
+      "hiraganaKatakanaWord": "いまなんじですか",
+      "chapterId": 1
+    },
+    {
+      "wordId": 36,
+      "originalWord": "It's...",
+      "kanjiWord": "時です",
+      "hiraganaKatakanaWord": "じです",
+      "chapterId": 1
+    },
+    {
+      "wordId": 37,
+      "originalWord": "Today",
+      "kanjiWord": "今日",
+      "hiraganaKatakanaWord": "きょう",
+      "chapterId": 1
+    },
+    {
+      "wordId": 38,
+      "originalWord": "Tomorrow",
+      "kanjiWord": "明日",
+      "hiraganaKatakanaWord": "あした",
+      "chapterId": 1
+    },
+    {
+      "wordId": 39,
+      "originalWord": "Yesterday",
+      "kanjiWord": "昨日",
+      "hiraganaKatakanaWord": "きのう",
+      "chapterId": 1
+    },
+    {
+      "wordId": 40,
+      "originalWord": "Monday",
+      "kanjiWord": "月曜日",
+      "hiraganaKatakanaWord": "げつようび",
+      "chapterId": 1
+    },
+    {
+      "wordId": 41,
+      "originalWord": "Tuesday",
+      "kanjiWord": "火曜日",
+      "hiraganaKatakanaWord": "かようび",
+      "chapterId": 1
+    },
+    {
+      "wordId": 42,
+      "originalWord": "Wednesday",
+      "kanjiWord": "水曜日",
+      "hiraganaKatakanaWord": "すいようび",
+      "chapterId": 1
+    },
+    {
+      "wordId": 43,
+      "originalWord": "Thursday",
+      "kanjiWord": "木曜日",
+      "hiraganaKatakanaWord": "もくようび",
+      "chapterId": 1
+    },
+    {
+      "wordId": 44,
+      "originalWord": "Friday",
+      "kanjiWord": "金曜日",
+      "hiraganaKatakanaWord": "きんようび",
+      "chapterId": 1
+    },
+    {
+      "wordId": 45,
+      "originalWord": "Saturday",
+      "kanjiWord": "土曜日",
+      "hiraganaKatakanaWord": "どようび",
+      "chapterId": 1
+    },
+    {
+      "wordId": 46,
+      "originalWord": "Sunday",
+      "kanjiWord": "日曜日",
+      "hiraganaKatakanaWord": "にちようび",
+      "chapterId": 1
+    },
+    {
+      "wordId": 47,
+      "originalWord": "January",
+      "kanjiWord": "一月",
+      "hiraganaKatakanaWord": "いちがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 48,
+      "originalWord": "February",
+      "kanjiWord": "二月",
+      "hiraganaKatakanaWord": "にがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 49,
+      "originalWord": "March",
+      "kanjiWord": "三月",
+      "hiraganaKatakanaWord": "さんがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 50,
+      "originalWord": "April",
+      "kanjiWord": "四月",
+      "hiraganaKatakanaWord": "しがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 51,
+      "originalWord": "May",
+      "kanjiWord": "五月",
+      "hiraganaKatakanaWord": "ごがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 52,
+      "originalWord": "June",
+      "kanjiWord": "六月",
+      "hiraganaKatakanaWord": "ろくがつ",
+      "chapterId": 1
+    },
+    {
+      "word": 53,
+      "originalWord": "July",
+      "kanjiWord": "七月",
+      "hiraganaKatakanaWord": "しちがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 54,
+      "originalWord": "August",
+      "kanjiWord": "八月",
+      "hiraganaKatakanaWord": "はちがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 55,
+      "originalWord": "September",
+      "kanjiWord": "九月",
+      "hiraganaKatakanaWord": "くがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 56,
+      "originalWord": "October",
+      "kanjiWord": "十月",
+      "hiraganaKatakanaWord": "じゅうがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 57,
+      "originalWord": "November",
+      "kanjiWord": "十一月",
+      "hiraganaKatakanaWord": "じゅういちがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 58,
+      "originalWord": "December",
+      "kanjiWord": "十二月",
+      "hiraganaKatakanaWord": "じゅうにがつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 59,
+      "originalWord": "Spring",
+      "kanjiWord": "春",
+      "hiraganaKatakanaWord": "はる",
+      "chapterId": 1
+    },
+    {
+      "wordId": 60,
+      "originalWord": "Summer",
+      "kanjiWord": "夏",
+      "hiraganaKatakanaWord": "なつ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 61,
+      "originalWord": "Fall",
+      "kanjiWord": "秋",
+      "hiraganaKatakanaWord": "あき",
+      "chapterId": 1
+    },
+    {
+      "wordId": 62,
+      "originalWord": "Winter",
+      "kanjiWord": "冬",
+      "hiraganaKatakanaWord": "ふゆ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 63,
+      "originalWord": "Breakfast",
+      "kanjiWord": "朝ご飯",
+      "hiraganaKatakanaWord": "あさごはん",
+      "chapterId": 1
+    },
+    {
+      "wordId": 64,
+      "originalWord": "Lunch",
+      "kanjiWord": "昼ご飯",
+      "hiraganaKatakanaWord": "ひるごはん",
+      "chapterId": 1
+    },
+    {
+      "wordId": 65,
+      "originalWord": "Dinner",
+      "kanjiWord": "晩ご飯",
+      "hiraganaKatakanaWord": "ばんごはん",
+      "chapterId": 1
+    },
+    {
+      "wordId": 66,
+      "originalWord": "Water",
+      "kanjiWord": "水",
+      "hiraganaKatakanaWord": "みず",
+      "chapterId": 1
+    },
+    {
+      "wordId": 67,
+      "originalWord": "Tea",
+      "kanjiWord": "お茶",
+      "hiraganaKatakanaWord": "おちゃ",
+      "chapterId": 1
+    },
+    {
+      "wordId": 68,
+      "originalWord": "Coffee",
+      "kanjiWord": "コーヒー",
+      "hiraganaKatakanaWord": "こーひー",
+      "chapterId": 1
+    },
+    {
+      "wordId": 69,
+      "originalWord": "Beer",
+      "kanjiWord": "ビール",
+      "hiraganaKatakanaWord": "びーる",
+      "chapterId": 1
+    },
+    {
+      "wordId": 70,
+      "originalWord": "Sake",
+      "kanjiWord": "日本酒",
+      "hiraganaKatakanaWord": "にほんしゅ",
+      "chapterId": 1
+    }
+  ]
+}

@@ -17,14 +17,14 @@ const val ARG_ID3 = "id3"
 
 sealed class NavigationRoutes {
 
-    // Unauthenticated Routes
+
     sealed class Unauthenticated(val route: String) : NavigationRoutes() {
         data object NavigationRoute : Unauthenticated(route = "unauthenticated")
         data object Login : Unauthenticated(route = "login")
         data object Register : Unauthenticated(route = "registration")
     }
 
-    // Authenticated Routes
+
     sealed class Authenticated(val route: String) : NavigationRoutes() {
         data object NavigationRoute : Authenticated(route = "authenticated")
 
@@ -80,6 +80,6 @@ sealed class NavigationRoutes {
 
     }
 
-    //Bottom bar Screens
+
 
 }

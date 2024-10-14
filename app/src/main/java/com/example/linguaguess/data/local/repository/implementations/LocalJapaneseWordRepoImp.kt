@@ -1,19 +1,18 @@
-package com.example.linguaguess.data.local.repository
+package com.example.linguaguess.data.local.repository.implementations
 
 import com.example.linguaguess.data.local.dao.JapaneseWordDao
 import com.example.linguaguess.data.local.model.JapaneseWordEntity
+import com.example.linguaguess.data.local.repository.interfaces.LocalJapaneseWordRepo
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResultLoading
-import javax.inject.Inject
 
 
-
-class LocalJapaneseWordRepo @Inject constructor(
+class LocalJapaneseWordRepoImp(
     private val japaneseWordDao: JapaneseWordDao
-) {
+) : LocalJapaneseWordRepo {
 
 
-    suspend fun getJapaneseWordsByChapterIdBlockPosition(
+    override suspend fun getJapaneseWordsByChapterIdBlockPosition(
         chapterId: Long,
         blockPosition: Long
     ): NetworkResultLoading<List<JapaneseWordEntity>> {
@@ -31,3 +30,4 @@ class LocalJapaneseWordRepo @Inject constructor(
     }
 
 }
+

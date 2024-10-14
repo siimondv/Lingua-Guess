@@ -1,6 +1,6 @@
 package com.example.linguaguess.domain.service.local
 
-import com.example.linguaguess.data.local.repository.LocalChapterRepo
+import com.example.linguaguess.data.local.repository.interfaces.LocalChapterRepo
 import com.example.linguaguess.data.mappers.toChapter
 import com.example.linguaguess.domain.model.Chapter
 import com.example.linguaguess.domain.service.local.internal.GetAndUpdateLocalBlocksByCollectionChapter

@@ -7,7 +7,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,14 +21,14 @@ fun RoundedButton(
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(FederalBlue),
-        shape = RoundedCornerShape(16.dp), // Adjust the corner radius as needed
+        shape = RoundedCornerShape(16.dp),
         modifier = modifier
     ) {
         Text(
             text = text,
-            color = Color.White, // White text color for contrast
-            fontSize = 18.sp,    // Adjust text size as needed
-            fontWeight = FontWeight.Bold // Adjust text weight as needed
+            color = Color.White,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold
         )
     }
 }

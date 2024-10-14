@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-//noinspection UsingMaterialAndMaterial3Libraries
+
 import androidx.compose.material.Scaffold
 import androidx.compose.material.SnackbarDuration
 //noinspection UsingMaterialAndMaterial3Libraries

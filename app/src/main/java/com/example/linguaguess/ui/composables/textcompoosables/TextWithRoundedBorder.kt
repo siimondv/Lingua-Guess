@@ -20,8 +20,8 @@ import com.example.linguaguess.ui.theme.LightBlack
 @Composable
 fun TextWithRoundedBorder(
     text: String,
-    textColor: Color = LightBlack, // Receive the text color as a parameter with a default black color
-    backgroundColor : Color = Color.White, // Receive the background color as a parameter with a default white color
+    textColor: Color = LightBlack,
+    backgroundColor : Color = Color.White,
     borderColor: Color = LightBlack, // Receive the border color as a parameter
     modifier: Modifier = Modifier // Receive modifier as a parameter with a default empty Modifier
 ) {

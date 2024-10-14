@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -31,10 +30,10 @@ import androidx.compose.ui.unit.sp
 import com.example.linguaguess.R
 import com.example.linguaguess.domain.model.Block
 import com.example.linguaguess.ui.theme.BgColor
-import com.example.linguaguess.ui.theme.DirtyGreen
-import com.example.linguaguess.ui.theme.DarkGreen
-import com.example.linguaguess.ui.theme.FederalBlue
 import com.example.linguaguess.ui.theme.BgGreen
+import com.example.linguaguess.ui.theme.DarkGreen
+import com.example.linguaguess.ui.theme.DirtyGreen
+import com.example.linguaguess.ui.theme.FederalBlue
 
 @Composable
 fun BlockCardBoxNotStarted(
@@ -229,14 +228,14 @@ fun BlockCardBoxStarted(
 
                     Text(
                         text = stringResource(R.string.best_score),
-                        fontSize = 25.sp, // Adjust the size as needed
+                        fontSize = 25.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
                     val percentage = if (block.totalWords != 0) {
                         (block.correctWords.toDouble() / block.totalWords.toDouble()) * 100
                     } else {
-                        0.0 // or any other default value you want to use in case of division by zero
+                        0.0
                     }
 
                     ProgressBarSquare(
@@ -255,7 +254,7 @@ fun BlockCardBoxStarted(
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
                         text = stringResource(R.string.play),
-                        fontSize = 25.sp, // Adjust the size as needed
+                        fontSize = 25.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Blue
                     )

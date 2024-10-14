@@ -1,6 +1,6 @@
 package com.example.linguaguess.domain.service.local
 
-import com.example.linguaguess.data.local.repository.LocalScoreRepo
+import com.example.linguaguess.data.local.repository.interfaces.LocalScoreRepo
 import com.example.linguaguess.utils.NetworkResult
 import com.example.linguaguess.utils.NetworkResultLoading
 import kotlinx.coroutines.CoroutineDispatcher

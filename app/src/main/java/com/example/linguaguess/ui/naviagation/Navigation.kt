@@ -61,21 +61,11 @@ fun NavGraphBuilder.unauthenticatedGraph(navController: NavController) {
     }
 }
 
-/**
- * Authenticated screens nav graph builder
- */
 fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
     navigation(
         route = NavigationRoutes.Authenticated.NavigationRoute.route,
         startDestination = NavigationRoutes.Authenticated.BottomBar.Library.route
     ) {
-        /*
-        // Dashboard
-        composable(route = NavigationRoutes.Authenticated.Dashboard.route) {
-            DashboardScreen()
-        }
-         */
-
 
         // Store
         composable(route = NavigationRoutes.Authenticated.BottomBar.Store.route) { from ->
@@ -132,7 +122,7 @@ fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
             SettingsScreen()
         }
 
-        //CollectionJ CollectionDetail
+        //CollectionDetail
         composable(
             route = NavigationRoutes.Authenticated.CollectionDetail.route,
             arguments = listOf(

@@ -1,7 +1,7 @@
 package com.example.linguaguess.domain.service.remote
 
-import com.example.linguaguess.data.remote.repository.RemoteChapterRepo
 import com.example.linguaguess.data.remote.model.ChapterDto
+import com.example.linguaguess.data.remote.repository.interfaces.RemoteChapterRepo
 import com.example.linguaguess.domain.model.Page
 import com.example.linguaguess.utils.NetworkResult
 import javax.inject.Inject

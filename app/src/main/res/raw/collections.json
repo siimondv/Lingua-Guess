@@ -1,0 +1,13 @@
+{
+  "collections": [
+    {
+      "collectionId": 1,
+      "collectionName": "Basics",
+      "collectionDescription": "A collection of basic Japanese words.",
+      "countryCode": "JP",
+      "totalWords": 70,
+      "totalChapters": 1,
+      "difficultyLevel": "EASY"
+    }
+  ]
+}

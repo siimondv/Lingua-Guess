@@ -1,6 +1,7 @@
 package com.example.linguaguess.domain.service.remote
 
-import com.example.linguaguess.data.remote.repository.RemoteAuthRepo
+import com.example.linguaguess.data.remote.repository.implementations.RemoteAuthRepoImp
+import com.example.linguaguess.data.remote.repository.interfaces.RemoteAuthRepo
 import com.example.linguaguess.domain.model.Credentials
 import com.example.linguaguess.utils.NetworkResultLoading
 import kotlinx.coroutines.CoroutineDispatcher

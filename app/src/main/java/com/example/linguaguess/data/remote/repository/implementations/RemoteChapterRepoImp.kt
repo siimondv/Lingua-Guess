@@ -1,21 +1,21 @@
-package com.example.linguaguess.data.remote.repository
+package com.example.linguaguess.data.remote.repository.implementations
 
 import com.example.linguaguess.data.remote.apis.ChapterApiService
 import com.example.linguaguess.data.remote.model.ChapterDto
+import com.example.linguaguess.data.remote.repository.interfaces.RemoteChapterRepo
 import com.example.linguaguess.domain.model.Page
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResult
-import javax.inject.Inject
 
 
-class RemoteChapterRepo @Inject constructor(
+class RemoteChapterRepoImp(
     private val chapterApiService: ChapterApiService
-) {
+) : RemoteChapterRepo {
 
-    suspend fun getAllChaptersByCollectionId(
+    override suspend fun getAllChaptersByCollectionId(
         collectionId: Long,
-        page: Int = 0,
-        size: Int = 10
+        page: Int,
+        size: Int
     ): NetworkResult<Page<ChapterDto>> {
         return try {
             val response = chapterApiService.getChaptersByCollectionId(collectionId, page, size)
@@ -32,3 +32,4 @@ class RemoteChapterRepo @Inject constructor(
         }
     }
 }
+

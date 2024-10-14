@@ -11,26 +11,26 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 
-//Blacks and Whites for the app
+
 val AccentColor = Color(0xFF303030)
 val TextColor = Color(0xFF1D1617)
 val BgColor = Color(0xFFFFFFFF)
 val LightBlack = Color(0xFF313131)
 
-//Blues for the app
+
 val FederalBlue = Color(0xFF004C50)
 val IliBlue = Color(0xFF05909B)
 val MyBlue = Color(0xFF00A3FF)
 val MyDarkBlue = Color(0xFF006EAC)
 val TealBlue = Color(0xFF90BDC4)
 
-//Greens for the app
+
 val LightGreen = Color(0xFF71DB60)
 val BgGreen = Color(0xFFC9FCB3)
 val DarkGreen = Color(0xFF138601)
 val DirtyGreen = Color(0xFF8CBB84)
 
-//RoundGradientButton Colors
+
 val RgLightBlue = Color(0xFF00B2FF)
 val RgDarkBlue = Color(0xFF005CFF)
 
@@ -44,11 +44,11 @@ val RgLightGreen = Color(0xFFA4DB60)
 val RgDarkGreen = Color(0xFF138601)
 
 
-//Result Box Colors
+
 val CorrectGreen = Color(0xFF0FA816)
 val IncorrectRed = Color(0xFFD11431)
 
-//EASY, MED, HARD Colors
+
 val EasyGreen = Color(0xFF0F7000)
 val EasyBackgroundGreen = Color(0xFFC9FCB3)
 val MedYellow = Color(0xFFA07D00)

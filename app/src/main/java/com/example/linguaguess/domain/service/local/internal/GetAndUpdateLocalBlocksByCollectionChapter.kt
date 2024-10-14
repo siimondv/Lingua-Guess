@@ -1,8 +1,8 @@
 package com.example.linguaguess.domain.service.local.internal
 
 import com.example.linguaguess.data.local.model.ScoreEntity
-import com.example.linguaguess.data.local.repository.LocalChapterRepo
-import com.example.linguaguess.data.local.repository.LocalScoreRepo
+import com.example.linguaguess.data.local.repository.interfaces.LocalChapterRepo
+import com.example.linguaguess.data.local.repository.interfaces.LocalScoreRepo
 import com.example.linguaguess.domain.model.Block
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResult

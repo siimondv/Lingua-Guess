@@ -5,5 +5,4 @@ data class ChapterDto (
     val chapterNumber: Int = 0,
     val totalWords: Int = 0,
     val collectionId : Long = 0
-
 )

@@ -1,19 +1,18 @@
-package com.example.linguaguess.data.local.repository
+package com.example.linguaguess.data.local.repository.implementations
 
 import com.example.linguaguess.data.local.dao.CollectionWithChaptersAndWordsDao
 import com.example.linguaguess.data.local.model.ChapterEntity
 import com.example.linguaguess.data.local.model.CollectionEntity
 import com.example.linguaguess.data.local.model.JapaneseWordEntity
+import com.example.linguaguess.data.local.repository.interfaces.LocalCollectionWithChaptersAndWordsRepo
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResult
-import javax.inject.Inject
 
 
-
-class LocalCollectionWithChaptersAndWordsRepo @Inject constructor(
+class LocalCollectionWithChaptersAndWordsRepoImp(
     private val collectionWithChaptersAndWordsDao: CollectionWithChaptersAndWordsDao
-) {
-    suspend fun saveCollectionWithChaptersAndWords(
+) : LocalCollectionWithChaptersAndWordsRepo {
+    override suspend fun saveCollectionWithChaptersAndWords(
         collection: CollectionEntity,
         chapters: List<ChapterEntity>,
         words: List<JapaneseWordEntity>
@@ -32,3 +31,4 @@ class LocalCollectionWithChaptersAndWordsRepo @Inject constructor(
 
     }
 }
+

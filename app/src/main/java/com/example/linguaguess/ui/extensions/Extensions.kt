@@ -11,7 +11,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
 
 
-//Extension function to add a linear gradient to a Compose Modifier
+
 fun Modifier.withLinearGradient(color1: Color, color2: Color): Modifier {
     return this
         .graphicsLayer(alpha = 0.99f)
@@ -31,7 +31,7 @@ fun Modifier.withLinearGradient(color1: Color, color2: Color): Modifier {
 }
 
 
-//Function that avoids multiple navigation calls
+
 fun NavController.safeNavigate(from: LifecycleOwner, route: String) {
     if (from.lifecycle.currentState == Lifecycle.State.RESUMED) {
         this.navigate(route)

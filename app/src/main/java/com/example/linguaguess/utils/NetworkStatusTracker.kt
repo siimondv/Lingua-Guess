@@ -11,29 +11,29 @@ import kotlinx.coroutines.flow.callbackFlow
 
 class NetworkStatusTracker(private val context: Context) {
 
-    // Define the enum with different network statuses
+
     enum class NetworkStatus {
         Available, Unavailable, Losing, Lost
     }
 
-    // Flow to emit network statuses
+
     val networkStatus: Flow<NetworkStatus> = callbackFlow {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val callback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
-                trySend(NetworkStatus.Available).isSuccess // Emit Available status
+                trySend(NetworkStatus.Available).isSuccess
             }
 
             override fun onLost(network: Network) {
-                trySend(NetworkStatus.Lost).isSuccess // Emit Lost status
+                trySend(NetworkStatus.Lost).isSuccess
             }
 
             override fun onLosing(network: Network, maxMsToLive: Int) {
-                trySend(NetworkStatus.Losing).isSuccess // Emit Losing status
+                trySend(NetworkStatus.Losing).isSuccess
             }
 
             override fun onUnavailable() {
-                trySend(NetworkStatus.Unavailable).isSuccess // Emit Unavailable status
+                trySend(NetworkStatus.Unavailable).isSuccess
             }
         }
 
@@ -43,7 +43,7 @@ class NetworkStatusTracker(private val context: Context) {
 
         connectivityManager.registerNetworkCallback(networkRequest, callback)
 
-        // Clean up the callback when the Flow is canceled
+
         awaitClose { connectivityManager.unregisterNetworkCallback(callback) }
     }
 }

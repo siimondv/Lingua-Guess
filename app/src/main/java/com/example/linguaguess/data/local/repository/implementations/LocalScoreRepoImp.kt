@@ -1,19 +1,20 @@
-package com.example.linguaguess.data.local.repository
+package com.example.linguaguess.data.local.repository.implementations
 
 import com.example.linguaguess.data.local.dao.ScoreDao
 import com.example.linguaguess.data.local.model.ScoreEntity
+import com.example.linguaguess.data.local.repository.interfaces.LocalScoreRepo
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResult
 import com.example.linguaguess.utils.NetworkResultLoading
 import javax.inject.Inject
 
 
-class LocalScoreRepo @Inject constructor(
+class LocalScoreRepoImp(
     private val scoreDao: ScoreDao
-) {
+) : LocalScoreRepo {
 
 
-    suspend fun getScoreByCollectionChapterAndBlock(
+    override suspend fun getScoreByCollectionChapterAndBlock(
         collectionId: Long,
         chapterId: Long,
         blockPosition: Int
@@ -28,7 +29,7 @@ class LocalScoreRepo @Inject constructor(
     }
 
 
-    suspend fun insertScore(scoreEntity: ScoreEntity): NetworkResult<Unit> {
+    override suspend fun insertScore(scoreEntity: ScoreEntity): NetworkResult<Unit> {
         return try {
             scoreDao.insertScore(scoreEntity)
             NetworkResult.Success(Unit)
@@ -37,7 +38,7 @@ class LocalScoreRepo @Inject constructor(
         }
     }
 
-    suspend fun updateScore(
+    override suspend fun updateScore(
         collectionId: Long,
         chapterId: Long,
         blockPosition: Int,
@@ -52,3 +53,4 @@ class LocalScoreRepo @Inject constructor(
     }
 
 }
+

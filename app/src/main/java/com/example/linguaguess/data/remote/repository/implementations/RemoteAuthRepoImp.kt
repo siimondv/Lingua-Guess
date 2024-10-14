@@ -1,20 +1,20 @@
-package com.example.linguaguess.data.remote.repository
+package com.example.linguaguess.data.remote.repository.implementations
 
 import com.example.linguaguess.data.remote.apis.AuthApiService
 import com.example.linguaguess.data.remote.model.LoginResponseDTO
+import com.example.linguaguess.data.remote.repository.interfaces.RemoteAuthRepo
 import com.example.linguaguess.data.remote.tokenrelated.TokenManager
 import com.example.linguaguess.domain.model.Credentials
 import com.example.linguaguess.domain.model.User
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResultLoading
-import javax.inject.Inject
 
-class RemoteAuthRepo @Inject constructor(
+class RemoteAuthRepoImp (
     private val authApiService: AuthApiService,
     private val tokenManager: TokenManager
-) {
+) : RemoteAuthRepo {
 
-    suspend fun login(
+    override suspend fun login(
         credentials: Credentials
     ): NetworkResultLoading<Unit> {
 
@@ -35,7 +35,7 @@ class RemoteAuthRepo @Inject constructor(
         }
     }
 
-    suspend fun register(
+    override suspend fun register(
         user: User
     ): NetworkResultLoading<Unit> {
         return try {
@@ -60,3 +60,4 @@ class RemoteAuthRepo @Inject constructor(
 
 
 }
+

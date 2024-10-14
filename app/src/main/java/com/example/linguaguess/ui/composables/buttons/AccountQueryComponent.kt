@@ -8,9 +8,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
 import com.example.linguaguess.R
-import com.example.linguaguess.ui.theme.FederalBlue
-import com.example.linguaguess.ui.theme.IliBlue
-import com.example.linguaguess.ui.theme.MyBlue
 import com.example.linguaguess.ui.theme.MyDarkBlue
 import com.example.linguaguess.ui.theme.TextColor
 

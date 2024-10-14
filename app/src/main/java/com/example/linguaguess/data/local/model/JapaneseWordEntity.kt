@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value = ["wordId"])] // For faster lookups
+    indices = [Index(value = ["wordId"])]
 )
 data class JapaneseWordEntity (
     @PrimaryKey
@@ -23,5 +23,5 @@ data class JapaneseWordEntity (
     val originalWord: String,
     val hiraganaKatakana: String,
     val kanjiWord: String,
-    val chapterId: Long // Foreign key referencing ChapterEntity
+    val chapterId: Long
 )

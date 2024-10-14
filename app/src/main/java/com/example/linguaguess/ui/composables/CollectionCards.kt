@@ -34,7 +34,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -53,10 +52,8 @@ import com.example.linguaguess.ui.theme.EasyGreen
 import com.example.linguaguess.ui.theme.FederalBlue
 import com.example.linguaguess.ui.theme.HardBackgroundRed
 import com.example.linguaguess.ui.theme.HardRed
-import com.example.linguaguess.ui.theme.IncorrectRed
 import com.example.linguaguess.ui.theme.MedBackgroundYellow
 import com.example.linguaguess.ui.theme.MedYellow
-import com.example.linguaguess.ui.theme.RgDarkGreen
 import com.example.linguaguess.ui.theme.TextColor
 
 @Composable
@@ -224,7 +221,7 @@ fun CollectionCardIsDownloaded(
                 .clip(RoundedCornerShape(topStart = 16.dp, bottomStart = 16.dp))
                 .fillMaxWidth()
                 .clickable(onClick = { onNavigateToDetail(collectionJGlobal.collectionId.toString()) })
-            // Ensuring full width
+
         ) {
             Row(
                 modifier = Modifier.fillMaxSize()

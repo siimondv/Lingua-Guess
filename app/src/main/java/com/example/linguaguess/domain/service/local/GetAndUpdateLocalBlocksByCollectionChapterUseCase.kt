@@ -1,8 +1,5 @@
 package com.example.linguaguess.domain.service.local
 
-import com.example.linguaguess.data.local.repository.LocalChapterRepo
-import com.example.linguaguess.data.local.repository.LocalScoreRepo
-import com.example.linguaguess.data.local.model.ScoreEntity
 import com.example.linguaguess.domain.model.Block
 import com.example.linguaguess.domain.service.local.internal.GetAndUpdateLocalBlocksByCollectionChapter
 import com.example.linguaguess.utils.Constants
@@ -16,8 +13,6 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class GetAndUpdateLocalBlocksByCollectionChapterUseCase @Inject constructor(
-    private val localChapterRepo: LocalChapterRepo,
-    private val localScoreRepo: LocalScoreRepo,
     private val getAndUpdateLocalBlocksByCollectionChapter: GetAndUpdateLocalBlocksByCollectionChapter,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {

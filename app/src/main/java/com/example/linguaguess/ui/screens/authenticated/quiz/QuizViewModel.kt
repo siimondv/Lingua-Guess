@@ -131,7 +131,7 @@ class QuizViewModel @Inject constructor(
     }
 
     fun goodAnswer() {
-        //This is to avoid adding the same word to the correctWords count
+
         if (_uiState.value.gotItStatus != GotItStatus.GOT_IT_RIGHT) {
             correctWords++
 

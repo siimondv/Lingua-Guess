@@ -61,13 +61,13 @@ fun MainScreen(
             navController = navController,
             startDestination = startDestination
         ) {
-            // Unauthenticated user flow screens
+
             unauthenticatedGraph(navController = navController)
 
-            // Authenticated user flow screens
+
             authenticatedGraph(navController = navController)
 
-            // Bottom bar screen
+
         }
     }
 

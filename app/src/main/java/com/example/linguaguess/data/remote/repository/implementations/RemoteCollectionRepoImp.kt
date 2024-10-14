@@ -1,21 +1,21 @@
-package com.example.linguaguess.data.remote.repository
+package com.example.linguaguess.data.remote.repository.implementations
 
 import com.example.linguaguess.data.remote.apis.CollectionApiService
 import com.example.linguaguess.data.remote.model.CollectionDetailDto
 import com.example.linguaguess.data.remote.model.CollectionDto
+import com.example.linguaguess.data.remote.repository.interfaces.RemoteCollectionRepo
 import com.example.linguaguess.domain.model.Page
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResult
 import com.example.linguaguess.utils.NetworkResultLoading
-import javax.inject.Inject
 
 
-class RemoteCollectionRepo @Inject constructor(
+class RemoteCollectionRepoImp(
     private val collectionApiService: CollectionApiService
-) {
+) : RemoteCollectionRepo {
 
-    suspend fun getAllCollections(
-        page: Int = 0
+    override suspend fun getAllCollections(
+        page: Int
     ): NetworkResult<Page<CollectionDto>> {
         val response = collectionApiService.getAllCollections(page = page)
 
@@ -28,7 +28,7 @@ class RemoteCollectionRepo @Inject constructor(
         }
     }
 
-    suspend fun getCollectionById(id: Long): NetworkResultLoading<CollectionDetailDto> {
+    override suspend fun getCollectionById(id: Long): NetworkResultLoading<CollectionDetailDto> {
         val response = collectionApiService.getCollectionById(id)
 
         return if (response.isSuccessful) {
@@ -41,3 +41,4 @@ class RemoteCollectionRepo @Inject constructor(
     }
 
 }
+

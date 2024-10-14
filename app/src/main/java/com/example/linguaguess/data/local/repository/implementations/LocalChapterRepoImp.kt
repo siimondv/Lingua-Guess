@@ -1,18 +1,17 @@
-package com.example.linguaguess.data.local.repository
+package com.example.linguaguess.data.local.repository.implementations
 
 import com.example.linguaguess.data.local.dao.ChapterDao
 import com.example.linguaguess.data.local.model.ChapterEntity
+import com.example.linguaguess.data.local.repository.interfaces.LocalChapterRepo
 import com.example.linguaguess.utils.Constants
 import com.example.linguaguess.utils.NetworkResultLoading
-import javax.inject.Inject
 
 
-
-class LocalChapterRepo @Inject constructor(
+class LocalChapterRepoImp(
     private val chapterDao: ChapterDao
-) {
+) : LocalChapterRepo {
 
-    suspend fun getChaptersByCollectionId(collectionId: Long): NetworkResultLoading<List<ChapterEntity>> {
+    override suspend fun getChaptersByCollectionId(collectionId: Long): NetworkResultLoading<List<ChapterEntity>> {
         return try {
             val chapters = chapterDao.getChaptersByCollectionId(collectionId)
             if (chapters.isEmpty()) {
@@ -27,7 +26,7 @@ class LocalChapterRepo @Inject constructor(
 
     }
 
-    suspend fun getTotalWordsByChapterId(
+    override suspend fun getTotalWordsByChapterId(
         chapterId: Long,
     ): NetworkResultLoading<Int> {
         return try {
@@ -41,3 +40,4 @@ class LocalChapterRepo @Inject constructor(
     }
 
 }
+

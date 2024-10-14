@@ -22,10 +22,10 @@ import androidx.room.PrimaryKey
 )
 data class ScoreEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,  // Optional auto-generated primary key
+    val id: Long = 0,
     val collectionId: Long,
     val chapterId: Long,
-    val blockPosition: Int,  // Nullable type
-    val rightAnswers: Int? = null,  // Nullable type
-    val totalAnswers: Int? = null   // Nullable type
+    val blockPosition: Int,
+    val rightAnswers: Int? = null,
+    val totalAnswers: Int? = null
 )
