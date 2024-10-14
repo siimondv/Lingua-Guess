@@ -62,6 +62,7 @@ There are 3 main modules in the project:
   - [Jetpack Compose](https://developer.android.com/jetpack/compose?gclsrc=ds&gclsrc=ds) - Jetpack Compose is Android’s recommended modern toolkit for building native UI
   - [Navigation](https://developer.android.com/develop/ui/compose/navigation) - Handle in-app navigation in a declarative manner with Jetpack Compose Navigation to create seamless navigation between composables.
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
+  - [Paging](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - A library designed to load and display large data sets in chunks, allowing for efficient scrolling and improved performance.
 - [Retrofit](https://square.github.io/retrofit/) For Network requests to the API.
 - [OkHttp3](https://square.github.io/okhttp/) - OkHttp is an HTTP client for Android that’s efficient by default.
   - **Authenticator** is used to modify requests and responsesI.
