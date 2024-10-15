@@ -1,11 +1,7 @@
 # Lingua-Guess
 This app is designed to help you learn Japanese. You can download collections from the store, each containing multiple chapters. Each chapter is divided into blocks of 30 words, where your goal is to learn and memorize the words, then aim to achieve the highest score possible. It’s a fun and effective way to build your Japanese vocabulary step by step!
-<p float="left">
-  <img src="https://github.com/user-attachments/assets/4888d2fb-f3d5-4c7b-a124-89fbaed895bd" width="200">
-  <img src="https://github.com/user-attachments/assets/353ca91b-2aac-450a-9836-acaada752183" width="200">
-  <img src="https://github.com/user-attachments/assets/07437df8-7df6-4bfc-bced-ecbd79d6d557" width="200">
-  <img src="https://github.com/user-attachments/assets/d95d4cdc-e124-4595-a747-69339d5d5c7a" width="200">
-</p>
+
+![4](https://github.com/user-attachments/assets/8f0b71a6-e62f-4000-baed-b0f6cd53d6a5)
 
 Notes:
 - This app uses a custom local API that is not publicly available. If you would like to run the app with your own API, please create a suitable API and update the URL in the BuildConfig file.
@@ -23,34 +19,9 @@ There are 3 main modules in the project:
 ![image](https://github.com/user-attachments/assets/6d785207-944d-4a9c-8900-621641d0e15e)
 
 ## ScreenShots
+![5](https://github.com/user-attachments/assets/a4d7b8d5-cbe8-4ee5-95a0-fe18c24b7baa)
+![6](https://github.com/user-attachments/assets/f47cee19-abe4-4885-b3d1-feb4985930fd)
 
-<table>
-  <tr>
-    <th>Login Screen </th>
-    <th>Register Screen</th>
-    <th>Store Screen</th>
-    <th>Library Screen</th>
-
-  </tr>
-  <tr>
-    <td><img src="https://github.com/user-attachments/assets/2921823e-319e-4327-9c74-aac3a80cc47a" width="350"></td>
-    <td><img src="https://github.com/user-attachments/assets/4dc7fb8e-7f78-4e41-957c-e57685c1b397" width="350"></td>
-    <td><img src="https://github.com/user-attachments/assets/6645fe8b-d74d-4b07-bea7-7304402e6386" width="350"></td>
-    <td><img src="https://github.com/user-attachments/assets/60974850-4902-43f0-b8d2-7291fb35c6ce" width="350"></td>
-  </tr>
-  <tr>
-    <th>Detail Screen</th>
-    <th>Chapter Screen</th>
-    <th>Block Screen</th>
-    <th>Quiz Screen</th>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/user-attachments/assets/8d5a0922-d629-4b9a-8b31-4ac016c13f66" width="350"></td>
-    <td><img src="https://github.com/user-attachments/assets/4813ead6-8000-48bd-8999-884016faa4cc" width="350"></td>
-    <td><img src="https://github.com/user-attachments/assets/89c83054-8786-46f8-a011-bc375acdccb6" width="350"></td>
-    <td><img src="https://github.com/user-attachments/assets/2ae584ad-c400-49f5-b14d-1dd155a85f42" width="350"></td>
-  </tr>
-</table>
 
 
 # Features and technologies
