@@ -44,10 +44,6 @@ There are 3 main modules in the project:
 - [Lottie](https://airbnb.design/lottie) - Lottie is an Android, iOS and React Native library that renders After Effects animations in real time.
 
 
-# Token-Based Authentication App
-It uses access and refresh tokens for user authentication, allowing secure API calls while managing session validity. Access tokens grant temporary access, while refresh tokens are used to obtain new access tokens without requiring the user to log in again
-
-![image](https://github.com/user-attachments/assets/71b144a0-e803-489d-89e7-b3b324d35658)
 
 
 
